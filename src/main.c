@@ -1,9 +1,9 @@
-#include <stdio.h>
+//besmellah
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL2_gfxPrimitives.h>
+//#include "header.h"
+#include "init.h"
 
 const int step = 5;
 void moveCircle(SDL_Keycode key, double* snake_x, double* snake_y) {
@@ -55,7 +55,8 @@ int main() {
 	double food_rx = 15;
 	double food_ry = 10;
 
-	SDL_Init(SDL_INIT_VIDEO);
+	init();
+//	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window* window = SDL_CreateWindow("workshop", 20, 20, 800, 600, SDL_WINDOW_OPENGL);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -77,7 +78,7 @@ int main() {
 
     	filledCircleRGBA(renderer, snake_x, snake_y, snake_radius, 0, 100, 100, 255);
     	filledEllipseRGBA(renderer, food_x, food_y, food_rx, food_ry, rand() % 255, rand() % 255, rand() % 255, 255);
-        char* buffer = malloc(sizeof(char) * 50);
+        char* buffer = (char*)malloc(sizeof(char) * 50);
         sprintf(buffer, "score: %d   elapsed time: %dms", snake_score, start_ticks - begining_of_time);
         printf("%s", buffer);
         stringRGBA(renderer, 5, 5, buffer, 0, 0, 0, 255);
@@ -88,6 +89,7 @@ int main() {
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+	SDL_DestroyWindow(WINDOW);
     SDL_Quit();
     return 0;
 }

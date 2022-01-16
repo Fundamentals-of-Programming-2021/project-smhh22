@@ -1,0 +1,15 @@
+NUMBER_OF_PLAYERS;
+GRID_WIDTH;
+GRID_HEIGHT;
+
+PLAYER[0].color
+PLAYER[1].color
+PLAYER[2].color
+...
+
+GRID[i][j].Border_shown[0], [1], ...
+GRID[i][j].Castle_ptr->x, y
+
+for i,j:	NULL if no castle here.
+			otherwise:	Soldiers_count
+						Player_number
