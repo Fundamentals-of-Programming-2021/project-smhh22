@@ -28,9 +28,11 @@ void show_map(SDL_Renderer *renderer) {
 			if (CASTLE_PTRS[i][j] != NULL) {
 				int mx = (GRID[i][j].x1 + GRID[i][j].x2) / 2;
 				int my = (GRID[i][j].y1 + GRID[i][j].y2) / 2;
-				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, GRID[i][j].Castle_ptr->Player->Color | 0xff000000);
+				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color | 0xff000000);
 
-//				stringColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, "SALAM:( ", GRID[i][j].Castle_ptr->Player->Color ^ 0xffffffff);
+				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
+				sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
+				stringColor(renderer, mx, my, Sol_cnt, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 			}
 		}
 	}
