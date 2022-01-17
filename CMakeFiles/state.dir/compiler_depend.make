@@ -54,6 +54,8 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   src/init.h \
+  src/show.h \
+  src/read_map.h \
   src/header.h \
   /usr/include/stdio.h \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h \
@@ -257,6 +259,8 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vpopcntdqintrin.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx5124fmapsintrin.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/9/include/wbnoinvdintrin.h:
 
 /usr/include/stdio.h:
@@ -281,15 +285,23 @@ src/init.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/emmintrin.h:
 
-/usr/include/SDL2/SDL_sensor.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+src/show.h:
 
 /usr/include/x86_64-linux-gnu/SDL2/_real_SDL_config.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/SDL2/SDL_sensor.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+src/read_map.h:
+
+/usr/include/SDL2/SDL_gesture.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512bwintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -324,8 +336,6 @@ src/init.h:
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vpopcntdqvlintrin.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
 
@@ -378,6 +388,10 @@ src/init.h:
 /usr/include/stdlib.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/mm_malloc.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmivlintrin.h:
+
+src/main.c:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -446,6 +460,8 @@ src/init.h:
 /usr/lib/gcc/x86_64-linux-gnu/9/include/lzcntintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vnniintrin.h:
 
@@ -551,10 +567,6 @@ src/init.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vldqintrin.h:
 
-/usr/include/SDL2/SDL_gesture.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512bwintrin.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/9/include/movdirintrin.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
@@ -562,9 +574,3 @@ src/init.h:
 /usr/include/x86_64-linux-gnu/bits/sys_errlist.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512dqintrin.h:
-
-src/main.c:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmivlintrin.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/avx5124fmapsintrin.h:

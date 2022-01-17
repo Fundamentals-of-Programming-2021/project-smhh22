@@ -3,6 +3,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
+#define min(x, y) x < y ? x : y
+#define max(x, y) x > y ? x : y
+
 /* TO: DO
  * 1: Grid Size: 12 * P ?!
  * 2: Struct for each cell																	DONE
@@ -22,6 +25,9 @@ const int DELTA_Y[4] = {-1, 0, +1, 0};
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
 
+int WIDTH;
+int HEIGHT;
+
 int16_t CELL_WIDTH;
 int16_t CELL_HEIGHT;
 
@@ -33,10 +39,10 @@ int WINDOW_PADDING_RIGHT;
 int WINDOW_PADDING_DOWN;
 int WINDOW_PADDING_LEFT;
 
-int CELL_PADDING_UP;
-int CELL_PADDING_RIGHT;
-int CELL_PADDING_DOWN;
-int CELL_PADDING_LEFT;
+int CASTLE_SIZE;
+
+const int BORDER_THICKNESS = 3;
+const int BAR_THICKNESS = 8;
 
 int TOTAL_SOLDIERS_COUNT;
 
@@ -77,7 +83,8 @@ struct DEPLOYED_SOLDIER {
 };
 
 CELL** GRID;
-CASTLE** CASTLE_PTRS;
+CASTLE*** CASTLE_PTRS;
+PLAYER* Players;
 
 SDL_Window* WINDOW;
 SDL_Renderer* RENDERER;

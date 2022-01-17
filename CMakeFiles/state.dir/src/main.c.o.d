@@ -47,6 +47,8 @@ CMakeFiles/state.dir/src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /home/a/Desktop/Sharif/1/Proj/state.io/src/init.h \
+ /home/a/Desktop/Sharif/1/Proj/state.io/src/show.h \
+ /home/a/Desktop/Sharif/1/Proj/state.io/src/read_map.h \
  /home/a/Desktop/Sharif/1/Proj/state.io/src/header.h /usr/include/stdio.h \
  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
