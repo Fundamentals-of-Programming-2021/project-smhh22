@@ -3,6 +3,9 @@
 
 void show_map(SDL_Renderer*);
 void show_bar(SDL_Renderer*);
+void show_potion(SDL_Renderer*, int, int, char*);
+
+void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
 void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
@@ -31,8 +34,8 @@ void show_map(SDL_Renderer *renderer) {
 				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color | 0xff000000);
 
 				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
-				sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
-				stringColor(renderer, mx, my, Sol_cnt, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
+				int len = sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
+				stringColor(renderer, mx - len * 4, my - 4, Sol_cnt, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 			}
 		}
 	}
@@ -50,4 +53,20 @@ void show_bar(SDL_Renderer *renderer) {
 		sum += Players[i].Soldiers_count;
 	}
 	thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[0].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[0].Color | 0xff000000);
+}
+
+void show_potion(SDL_Renderer *renderer, int x, int y, char *type) {
+	int mx = (GRID[x][y].x1 + GRID[x][y].x2) / 2;
+	int my = (GRID[x][y].y1 + GRID[x][y].y2) / 2;
+	diamondColor(renderer, mx, my, CASTLE_SIZE / 2, GRID[x][y].Castle_ptr->Player->Color ^ 0xffffffff);
+
+	filledCircleColor(renderer, mx, my, (int)sqrtl(CASTLE_SIZE * CASTLE_SIZE / 2) / 2, GRID[x][y].Castle_ptr->Player->Color ^ 0x80808080);
+
+	stringColor(renderer, mx - 8, my - 4, type, GRID[x][y].Castle_ptr->Player->Color | 0xff000000);
+}
+
+void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
+	short X[4] = {x - r, x, x + r, x};
+	short Y[4] = {y, y + r, y, y - r};
+	filledPolygonColor(renderer, X, Y, 4, Color);
 }

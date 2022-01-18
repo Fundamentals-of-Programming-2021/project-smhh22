@@ -63,6 +63,8 @@ void Define_global_size_variables() {
 
 	show_map(RENDERER);
 	show_bar(RENDERER);
+	show_potion(RENDERER, 1, 1, "S1");
+	show_potion(RENDERER, 2, 2, "C2");
 
 	uint32_t color = 0xffffff00;
 //	boxColor(RENDERER, 0, 0, SCREEN_WIDTH, WINDOW_PADDING_UP, color);
