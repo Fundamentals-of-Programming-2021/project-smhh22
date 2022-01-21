@@ -1,4 +1,7 @@
 //bemellah
+
+#pragma once
+
 #include "header.h"
 
 void Read_map(char *str) {

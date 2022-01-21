@@ -1,4 +1,7 @@
 //besmellah
+
+#pragma once
+
 #include "read_map.h"
 
 void show_map(SDL_Renderer*);
@@ -70,7 +73,6 @@ void show_soldiers(SDL_Renderer *renderer) {
 	DEPLOYED_SOLDIER *cur = HEAD;
 	while (cur != NULL) {
 		diamondColor(renderer, cur->x, cur->y, SOLDIER_SIZE, cur->Player->Color | 0xff000000);
-		printf("SALAM %x\n", cur->Player->Color);
 		cur = cur->nxt;
 	}
 }

@@ -1,13 +1,14 @@
 //besmellah
-//#pragma once
+
+#pragma once
+
 #include "show.h"
-//#include "read_map.h"
 
 void init();
 void Define_global_size_variables();
 
 void init () {
-	Read_map("maps/map.txt");
+	Read_map("maps/map0.txt");
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	WINDOW = SDL_CreateWindow("State.io", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1240, 640, SDL_WINDOW_OPENGL);
 	RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED);
