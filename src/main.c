@@ -55,13 +55,29 @@ int main() {
 	double food_rx = 15;
 	double food_ry = 10;
 
+	Read_map("maps/map0.txt");
 	init();
+	Define_global_size_variables();
+
+	HEAD = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
+	HEAD->x = 500;
+	HEAD->y = 500;
+	HEAD->nxt = HEAD->prv = NULL;
+	HEAD->Player = Players + 1;
+	show_map(RENDERER);
+	show_bar(RENDERER);
+	show_potion(RENDERER, 1, 1, "S1");
+	show_potion(RENDERER, 2, 2, "C2");
+	show_soldiers(RENDERER);
+	SDL_RenderPresent(RENDERER);
+//	SDL_Delay(10000);
+
 //	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window* window = SDL_CreateWindow("workshop", 20, 20, 800, 600, SDL_WINDOW_OPENGL);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     int begining_of_time = SDL_GetTicks();
-    const double FPS = 30;
+    const double FPS = 60;
     while (1) {
         int start_ticks = SDL_GetTicks();
 
@@ -69,6 +85,7 @@ int main() {
 
     	SDL_SetRenderDrawColor(renderer, 120, 60, 80, 255);
     	SDL_RenderClear(renderer);
+    	SDL_RenderClear(RENDERER);
 
     	if (hasEatenFood(snake_x, snake_y, food_x, food_y, snake_radius, food_rx, food_ry)) {
     	   	snake_radius *= 1.2;
@@ -83,6 +100,7 @@ int main() {
         printf("%s", buffer);
         stringRGBA(renderer, 5, 5, buffer, 0, 0, 0, 255);
     	SDL_RenderPresent(renderer);
+//    	SDL_RenderPresent(RENDERER);
 
         while (SDL_GetTicks() - start_ticks < 1000 / FPS);
     }

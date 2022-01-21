@@ -8,15 +8,12 @@ void init();
 void Define_global_size_variables();
 
 void init () {
-	Read_map("maps/map0.txt");
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	WINDOW = SDL_CreateWindow("State.io", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1240, 640, SDL_WINDOW_OPENGL);
 	RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED);
-	SDL_SetRenderDrawColor(RENDERER, 0xff, 0xff, 0xff, 0xff);
+	SDL_SetRenderDrawColor(RENDERER, 0xdd, 0xdd, 0xdd, 0xff);
 	SDL_RenderClear(RENDERER);
 //	Add SDL_WINDOW_RESIZABLE to flags.
-	Define_global_size_variables();
-	SDL_Delay(10000);
 }
 
 void Define_global_size_variables() {
@@ -61,23 +58,4 @@ void Define_global_size_variables() {
 //			boxColor(RENDERER, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color);
 		}
 	}
-
-	HEAD = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
-	HEAD->x = 500;
-	HEAD->y = 500;
-	HEAD->nxt = HEAD->prv = NULL;
-	HEAD->Player = Players + 1;
-	show_map(RENDERER);
-	show_bar(RENDERER);
-	show_potion(RENDERER, 1, 1, "S1");
-	show_potion(RENDERER, 2, 2, "C2");
-	show_soldiers(RENDERER);
-
-	uint32_t color = 0xffffff00;
-//	boxColor(RENDERER, 0, 0, SCREEN_WIDTH, WINDOW_PADDING_UP, color);
-//	boxColor(RENDERER, 0, 0, WINDOW_PADDING_LEFT, SCREEN_HEIGHT, color);
-//	boxColor(RENDERER, SCREEN_WIDTH - WINDOW_PADDING_RIGHT, 0, SCREEN_WIDTH, SCREEN_HEIGHT, color);
-//	boxColor(RENDERER, 0, SCREEN_HEIGHT - WINDOW_PADDING_DOWN, SCREEN_WIDTH, SCREEN_HEIGHT, color);
-	SDL_RenderPresent(RENDERER);
-//	SDL_SetRenderDrawColor(RENDERER, 0xff, 0xff, 0xff, 0xff);
 }

@@ -53,7 +53,7 @@ int TOTAL_SOLDIERS_COUNT;
 
 int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 2. USER is player 1 & the gray one is player 2.
 
-const int FPS = 60;
+const double FPS = 60;
 
 typedef struct CASTLE CASTLE;
 typedef struct CELL CELL;
