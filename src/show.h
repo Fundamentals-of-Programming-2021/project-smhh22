@@ -4,6 +4,7 @@
 
 #include "read_map.h"
 
+void show_background(SDL_Renderer*);
 void show_map(SDL_Renderer*);
 void show_bar(SDL_Renderer*);
 void show_potion(SDL_Renderer*, int, int, char*);
@@ -12,6 +13,12 @@ void show_soldiers(SDL_Renderer*);
 void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
 void show_sample(SDL_Renderer*);
+
+void show_background(SDL_Renderer* renderer) {
+	for (int i = 1; i <= 20; i++) {
+		lineColor(renderer, 0, i * WINDOW_PADDING_UP, (20 - i) * WINDOW_PADDING_UP, 0, 0xff000000);
+	}
+}
 
 void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
@@ -88,6 +95,7 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 
 
 void show_sample(SDL_Renderer *renderer) {
+	show_background(renderer);
 	show_map(renderer);
 	show_bar(renderer);
 	show_potion(renderer, 1, 1, "S1");
