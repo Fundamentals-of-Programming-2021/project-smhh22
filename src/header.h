@@ -44,6 +44,7 @@ int CASTLE_SIZE;
 
 const int BORDER_THICKNESS = 3;
 const int BAR_THICKNESS = 8;
+const int SOLDIER_SIZE = 5;
 
 int TOTAL_SOLDIERS_COUNT;
 
@@ -81,6 +82,7 @@ struct DEPLOYED_SOLDIER {
 	CASTLE* Dest;
 	int x, y;
 	int vx, vy;
+	DEPLOYED_SOLDIER *nxt, *prv;
 };
 
 CELL** GRID;
@@ -89,3 +91,5 @@ PLAYER* Players;
 
 SDL_Window* WINDOW;
 SDL_Renderer* RENDERER;
+
+DEPLOYED_SOLDIER *HEAD = NULL;

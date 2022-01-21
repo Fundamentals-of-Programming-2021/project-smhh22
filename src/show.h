@@ -4,6 +4,7 @@
 void show_map(SDL_Renderer*);
 void show_bar(SDL_Renderer*);
 void show_potion(SDL_Renderer*, int, int, char*);
+void show_soldiers(SDL_Renderer*);
 
 void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
@@ -64,6 +65,16 @@ void show_potion(SDL_Renderer *renderer, int x, int y, char *type) {
 
 	stringColor(renderer, mx - 8, my - 4, type, GRID[x][y].Castle_ptr->Player->Color | 0xff000000);
 }
+
+void show_soldiers(SDL_Renderer *renderer) {
+	DEPLOYED_SOLDIER *cur = HEAD;
+	while (cur != NULL) {
+		diamondColor(renderer, cur->x, cur->y, SOLDIER_SIZE, cur->Player->Color | 0xff000000);
+		printf("SALAM %x\n", cur->Player->Color);
+		cur = cur->nxt;
+	}
+}
+
 
 void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 	short X[4] = {x - r, x, x + r, x};
