@@ -27,7 +27,11 @@ void show_background(SDL_Renderer* renderer) {
 void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
-			boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color | (GRID[i][j].Castle_ptr->Soldiers_count * 0x01000000));
+			if (GRID[i][j].Castle_ptr->Player != Players + 1)
+				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color | (GRID[i][j].Castle_ptr->Soldiers_count * 0x01000000));
+			else {
+				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, 0xffff5000);
+			}
 
 			if (GRID[i][j].Border_shown[0]) {
 				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y1, BORDER_THICKNESS, 0xff000000);
@@ -45,7 +49,7 @@ void show_map(SDL_Renderer *renderer) {
 				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x1, GRID[i][j].y2, BORDER_THICKNESS, 0xff000000);
 			}
 			
-			if (CASTLE_PTRS[i][j] != NULL) {
+			if (CASTLE_PTRS[i][j] != NULL && CASTLE_PTRS[i][j]->Player != Players + 1) {
 				int mx = (GRID[i][j].x1 + GRID[i][j].x2) / 2;
 				int my = (GRID[i][j].y1 + GRID[i][j].y2) / 2;
 				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color | 0xff000000);

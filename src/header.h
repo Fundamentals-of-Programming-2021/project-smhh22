@@ -10,18 +10,6 @@
 #define min(x, y) x < y ? x : y
 #define max(x, y) x > y ? x : y
 
-/* TO: DO
- * 1: Grid Size: 12 * P ?!
- * 2: Struct for each cell																	DONE
- * 	2.1: For each border determine that is this border showed?								DONE
- * 	`2.2: After making struct for each castle, give a pointer to the castle for the cell.	DONE
- * 3: 2D Array for grid Cells.
- * 4: Struct for each castle																DONE
- * 	4.1: Implement color.
- * 	`4.2: Pointer to a Player.
- * 5: Struct for each Player.
- */
-
 //UP RIGHT DOWN LEFT
 const int DELTA_X[4] = {0, +1, 0, -1};
 const int DELTA_Y[4] = {-1, 0, +1, 0};
@@ -51,7 +39,7 @@ const int SOLDIER_SIZE = 5;
 
 int TOTAL_SOLDIERS_COUNT;
 
-int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 2. USER is player 1 & the gray one is player 2.
+int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player 1: The sea, Player 2: User.
 
 const double FPS = 60;
 
