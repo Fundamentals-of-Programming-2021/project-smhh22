@@ -11,6 +11,8 @@ void show_soldiers(SDL_Renderer*);
 
 void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
+void show_sample(SDL_Renderer*);
+
 void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
@@ -82,4 +84,13 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 	short X[4] = {x - r, x, x + r, x};
 	short Y[4] = {y, y + r, y, y - r};
 	filledPolygonColor(renderer, X, Y, 4, Color);
+}
+
+
+void show_sample(SDL_Renderer *renderer) {
+	show_map(renderer);
+	show_bar(renderer);
+	show_potion(renderer, 1, 1, "S1");
+	show_potion(renderer, 2, 2, "C2");
+	show_soldiers(renderer);
 }

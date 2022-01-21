@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <math.h>
-//#include "header.h"
+
 #include "init.h"
 
 const int step = 5;
@@ -64,11 +64,9 @@ int main() {
 	HEAD->y = 500;
 	HEAD->nxt = HEAD->prv = NULL;
 	HEAD->Player = Players + 1;
-	show_map(RENDERER);
-	show_bar(RENDERER);
-	show_potion(RENDERER, 1, 1, "S1");
-	show_potion(RENDERER, 2, 2, "C2");
-	show_soldiers(RENDERER);
+	
+	show_sample(RENDERER);
+
 	SDL_RenderPresent(RENDERER);
 //	SDL_Delay(10000);
 
@@ -84,6 +82,7 @@ int main() {
         if (handleEvents(&snake_x, &snake_y) == EXIT) break;
 
     	SDL_SetRenderDrawColor(renderer, 120, 60, 80, 255);
+    	SDL_SetRenderDrawColor(RENDERER, 0xdd, 0xdd, 0xdd, 0xff);
     	SDL_RenderClear(renderer);
     	SDL_RenderClear(RENDERER);
 
@@ -99,8 +98,11 @@ int main() {
         sprintf(buffer, "score: %d   elapsed time: %dms", snake_score, start_ticks - begining_of_time);
         printf("%s", buffer);
         stringRGBA(renderer, 5, 5, buffer, 0, 0, 0, 255);
+
+		show_sample(RENDERER);
+
     	SDL_RenderPresent(renderer);
-//    	SDL_RenderPresent(RENDERER);
+    	SDL_RenderPresent(RENDERER);
 
         while (SDL_GetTicks() - start_ticks < 1000 / FPS);
     }
