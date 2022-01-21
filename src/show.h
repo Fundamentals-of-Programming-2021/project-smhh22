@@ -15,8 +15,12 @@ void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 void show_sample(SDL_Renderer*);
 
 void show_background(SDL_Renderer* renderer) {
-	for (int i = 1; i <= 20; i++) {
-		lineColor(renderer, 0, i * WINDOW_PADDING_UP, (20 - i) * WINDOW_PADDING_UP, 0, 0xff000000);
+	for (int i = 1; i <= 10; i++) {
+		lineColor(renderer, 0, i * WINDOW_PADDING_UP / 5, (10 - i) * WINDOW_PADDING_UP / 5, 0, 0xaa000000 | (i * 0x00101000));
+	}
+
+	for (int i = 1; i <= 8; i++) {
+		lineColor(renderer, SCREEN_WIDTH, SCREEN_HEIGHT - i * WINDOW_PADDING_UP / 5, SCREEN_WIDTH - (8 - i) * WINDOW_PADDING_UP / 5, SCREEN_HEIGHT, 0xaa000000 | (i * 0x00100005));
 	}
 }
 
