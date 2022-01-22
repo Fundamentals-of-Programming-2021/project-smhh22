@@ -31,4 +31,62 @@ void make_random_map(int number_of_opponents) {
 		Players[i].Potion_enabled = -1;
 		Players[i].Soldiers_count = 0;
 	}
+
+	TUPLE Grid_cells[GRID_WIDTH * GRID_HEIGHT];
+
+	int neutral_territories = rand() % NUMBER_OF_PLAYERS + 2 * NUMBER_OF_PLAYERS;
+	int sea_zones = rand() % 3 + 3; 
+
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		for (int j = 0; j < GRID_HEIGHT; j++) {
+			for (int k = 0; k < 4; k++) {
+				GRID[i][j].Border_shown[k] = 1;
+			}
+			Grid_cells[i * GRID_HEIGHT + j].x1 = i;
+			Grid_cells[i * GRID_HEIGHT + j].x2 = j;
+		}
+	}
+
+	random_shuffle(Grid_cells, GRID_WIDTH * GRID_HEIGHT);
+
+	for (int i = 0; i < neutral_territories; i++) {
+		int x = Grid_cells.x1;
+		int y = Grid_cells.x2;
+		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		CASTLE_PTRS[x][y]->Soldiers_count = NEUTRAL_INITIAL_SOLDIERS;
+		CASTLE_PTRS[x][y]->Player = Players + 0;
+		CASTLE_PTRS[x][y]->Player->Soldiers_count += NEUTRAL_INITIAL_SOLDIERS;
+		TOTAL_SOLDIERS_COUNT += NEUTRAL_INITIAL_SOLDIERS;
+	}
+
+	for (int i = neutral_territories; i < neutral_territories + sea_zones; i++) {
+		int x = Grid_cells.x1;
+		int y = Grid_cells.x2;
+		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		CASTLE_PTRS[x][y]->Soldiers_count = 0;
+		CASTLE_PTRS[x][y]->Player = Players + 1;
+	}
+
+	for (int i = neutral_territories + sea_zones; i < neutral_territories + sea_zones + NUMBER_OF_PLAYERS - 2) {
+		int x = Grid_cells.x1;
+		int y = Grid_cells.x2;
+		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		CASTLE_PTRS[x][y]->Soldiers_count = INITIAL_SOLDIERS;
+		CASTLE_PTRS[x][y]->Player = Players + 2 + i - neutral_territories - sea_zones;
+		CASTLE_PTRS[x][y]->Player->Soldiers_count += INITIAL_SOLDIERS;
+		TOTAL_SOLDIERS_COUNT += INITIAL_SOLDIERS;
+	}
+
+	TUPLE Borders[GRID_WIDTH * GRID_HEIGHT * 4 + 10];
+	int ptr = 0;
+
+	for (int i = 0; i < neutral_territories + sea_zones + NUMBER_OF_PLAYERS - 2; i++) {
+		for (int j = 0; j < 4; j++) {
+			Borders[ptr].x1 = Grid_cells[i].x1;
+			Borders[ptr].x2 = Grid_cells[i].x2;
+			Borders[ptr++].x2 = j
+		}
+	}
+	
+	random_shuffle(Borders, ptr);
 }

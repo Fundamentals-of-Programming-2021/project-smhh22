@@ -37,6 +37,9 @@ const int BORDER_THICKNESS = 3;
 const int BAR_THICKNESS = 8;
 const int SOLDIER_SIZE = 5;
 
+const int NEUTRAL_INITIAL_SOLDIERS = 100;
+const int INITIAL_SOLDIERS = 125;
+
 int TOTAL_SOLDIERS_COUNT;
 
 int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player 1: The sea, Player 2: User.
@@ -47,6 +50,7 @@ typedef struct CASTLE CASTLE;
 typedef struct CELL CELL;
 typedef struct PLAYER PLAYER;
 typedef struct DEPLOYED_SOLDIER DEPLOYED_SOLDIER;
+typedef struct TUPLE TUPLE;
 
 struct CELL {
 	int16_t x1, x2, y1, y2;
@@ -74,6 +78,13 @@ struct DEPLOYED_SOLDIER {
 	int x, y;
 	int vx, vy;
 	DEPLOYED_SOLDIER *nxt, *prv;
+};
+
+struct TUPLE {
+	int x1;
+	int x2;
+	int x3;
+	int x4;
 };
 
 CELL** GRID;
