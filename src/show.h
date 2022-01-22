@@ -70,7 +70,7 @@ void show_bar(SDL_Renderer *renderer) {
 	}
 
 	double sum = 0;
-	for (int i = 1; i < NUMBER_OF_PLAYERS; i++) {
+	for (int i = 2; i < NUMBER_OF_PLAYERS; i++) {
 		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
 		sum += Players[i].Soldiers_count;
 	}

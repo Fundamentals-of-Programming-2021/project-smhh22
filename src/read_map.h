@@ -68,13 +68,9 @@ void Read_map(char *str) {
 }
 
 void Save_map_to_end() {
-	printf("SALAM\n");
-	fflush(stdout);
 	char str[100];
 	int MAP_ID = read_map_cnt();
 	sprintf(str, "maps/map%d.txt", MAP_ID);
-//	printf("FILE OPENED\n");
-//	fflush(stdout);
 	assign_map_cnt(MAP_ID + 1);
 
 	FILE* Map_file = fopen(str, "w");

@@ -1,0 +1,621 @@
+4
+22
+9
+0
+ff0000
+ff00
+ffff00
+1 0 0 1 
+2 1
+0 0 0 1 
+2 1
+0 1 0 1 
+2 1
+0 1 0 1 
+2 1
+0 0 1 1 
+2 1
+1 0 0 1 
+2 3
+0 0 1 1 
+2 3
+1 0 0 1 
+4 7
+0 0 1 1 
+4 7
+1 0 0 0 
+2 1
+0 0 1 0 
+2 1
+1 0 1 1 
+3 2
+1 0 1 1 
+2 3
+1 1 1 0 
+2 1
+1 0 0 0 
+2 3
+0 1 1 0 
+2 3
+1 0 0 0 
+4 7
+0 0 1 0 
+4 7
+1 1 0 0 
+2 1
+0 1 1 0 
+2 1
+1 0 1 0 
+3 2
+1 0 0 0 
+2 3
+0 0 0 1 
+2 3
+0 0 1 0 
+2 3
+1 0 0 1 
+4 7
+0 0 0 0 
+4 7
+0 0 1 0 
+4 7
+1 1 0 1 
+3 2
+0 1 0 1 
+3 2
+0 1 1 0 
+3 2
+1 1 0 0 
+2 3
+0 1 0 0 
+2 3
+0 1 1 0 
+2 3
+1 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 0 1 0 
+4 7
+1 0 1 1 
+5 0
+1 0 0 1 
+4 2
+0 0 0 1 
+4 2
+0 0 1 1 
+4 2
+1 1 0 1 
+4 7
+0 0 0 1 
+4 7
+0 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 0 1 0 
+4 7
+1 0 1 0 
+5 0
+1 0 0 0 
+4 2
+0 0 0 0 
+4 2
+0 0 0 0 
+4 2
+0 1 1 1 
+4 2
+1 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 0 1 0 
+4 7
+1 0 1 0 
+5 0
+1 0 0 0 
+4 2
+0 0 0 0 
+4 2
+0 0 1 0 
+4 2
+1 0 0 1 
+4 7
+0 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 1 1 0 
+4 7
+1 0 1 0 
+5 0
+1 0 0 0 
+4 2
+0 0 0 0 
+4 2
+0 0 1 0 
+4 2
+1 0 0 0 
+4 7
+0 0 0 0 
+4 7
+0 1 0 0 
+4 7
+0 1 1 0 
+4 7
+1 0 1 1 
+12 8
+1 0 1 0 
+5 0
+1 1 0 0 
+4 2
+0 0 0 0 
+4 2
+0 0 1 0 
+4 2
+1 1 0 0 
+4 7
+0 1 1 0 
+4 7
+1 0 0 1 
+12 8
+0 0 0 1 
+12 8
+0 0 1 0 
+12 8
+1 0 0 0 
+5 0
+0 0 1 1 
+5 0
+1 1 0 0 
+4 2
+0 1 1 0 
+4 2
+1 0 0 1 
+12 8
+0 0 0 1 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 0 0 
+5 0
+0 0 0 0 
+5 0
+0 0 0 1 
+5 0
+0 0 1 1 
+5 0
+1 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 1 0 0 
+5 0
+0 1 0 0 
+5 0
+0 1 0 0 
+5 0
+0 1 1 0 
+5 0
+1 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 0 1 
+16 2
+0 0 0 1 
+16 2
+0 0 1 1 
+16 2
+1 1 0 1 
+12 8
+0 1 0 0 
+12 8
+0 1 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 1 
+16 2
+0 0 0 1 
+16 2
+0 0 1 1 
+16 2
+1 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 1 1 0 
+16 2
+1 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 1 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 1 0 
+16 2
+1 1 0 1 
+12 8
+0 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 1 1 
+17 1
+1 1 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 1 1 
+16 2
+1 0 0 0 
+12 8
+0 0 0 0 
+12 8
+0 0 1 0 
+12 8
+1 0 0 0 
+17 1
+0 0 1 1 
+17 1
+1 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 1 0 
+16 2
+1 1 0 0 
+12 8
+0 1 0 0 
+12 8
+0 0 1 0 
+12 8
+1 1 0 0 
+17 1
+0 1 1 0 
+17 1
+1 1 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 1 
+16 2
+0 0 1 1 
+16 2
+1 0 1 0 
+12 8
+1 0 0 1 
+20 0
+0 0 0 1 
+20 0
+0 0 1 1 
+20 0
+1 1 0 0 
+16 2
+0 1 0 0 
+16 2
+0 0 0 0 
+16 2
+0 0 0 0 
+16 2
+0 1 1 0 
+16 2
+1 0 1 0 
+12 8
+1 0 0 0 
+20 0
+0 0 0 0 
+20 0
+0 0 0 0 
+20 0
+0 0 0 1 
+20 0
+0 0 1 1 
+20 0
+1 1 0 0 
+16 2
+0 0 1 0 
+16 2
+1 1 0 1 
+12 8
+0 0 1 0 
+12 8
+1 1 0 0 
+20 0
+0 1 0 0 
+20 0
+0 1 0 0 
+20 0
+0 1 0 0 
+20 0
+0 1 0 0 
+20 0
+0 1 1 1 
+20 0
+1 1 0 0 
+16 2
+0 1 1 1 
+16 2
+1 1 1 0 
+12 8
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Otherwise
+0
+1
+Null
+Otherwise
+125
+3
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+125
+2
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+0
+1
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+0
+1
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null

@@ -15,32 +15,21 @@ void make_random_map(int number_of_opponents) {
 	srand(time(NULL));
 	if (number_of_opponents == -1)
 		number_of_opponents = rand() % 5 + 1;
-	printf("number_of_opponents: %d\n", number_of_opponents);
-	fflush(stdout);
 	NUMBER_OF_PLAYERS = number_of_opponents + 3;
-	CELL_WIDTH = rand() % 50 + 40;
+	CELL_WIDTH = rand() % 40 + 40;
 	GRID_WIDTH = (SCREEN_WIDTH - WINDOW_PADDING_RIGHT - WINDOW_PADDING_LEFT) / CELL_WIDTH;
 	GRID_HEIGHT = (SCREEN_HEIGHT - WINDOW_PADDING_UP - WINDOW_PADDING_DOWN) / CELL_WIDTH;
-
-	printf("CELL_WIDTH: %d\n", CELL_WIDTH);
-	printf("GRID_WIDTH: %d\n", GRID_WIDTH);
-	printf("GRID_HEIGHT: %d\n", GRID_HEIGHT);
-	fflush(stdout);
 
 	Players = (PLAYER*)malloc(sizeof(PLAYER) * NUMBER_OF_PLAYERS);
 	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
 	CASTLE_PTRS = (CASTLE***)malloc(sizeof(CASTLE**) * GRID_WIDTH);
 	for (int i = 0; i < GRID_WIDTH; i++) {
-	//	printf("1st for: %d\n", i);
-	//	fflush(stdout);
 		GRID[i] = (CELL*)malloc(sizeof(CELL) * GRID_HEIGHT);
 		CASTLE_PTRS[i] = (CASTLE**)malloc(sizeof(CASTLE*) * GRID_HEIGHT);
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			CASTLE_PTRS[i][j] = NULL;
 			GRID[i][j].Castle_ptr = NULL;
 		}
-	//	printf("1st for: %d\n", i);
-	//	fflush(stdout);
 	}
 
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
@@ -53,8 +42,6 @@ void make_random_map(int number_of_opponents) {
 			Players[i].Color |= 0x000000ff;
 		Players[i].Potion_enabled = -1;
 		Players[i].Soldiers_count = 0;
-//		printf("PLAYERS for: %d\n", i);
-//		fflush(stdout);
 	}
 
 	TUPLE Grid_cells[GRID_WIDTH * GRID_HEIGHT];
@@ -70,15 +57,10 @@ void make_random_map(int number_of_opponents) {
 			GRID[i][j].Castle_ptr = NULL;
 			Grid_cells[i * GRID_HEIGHT + j].x1 = i;
 			Grid_cells[i * GRID_HEIGHT + j].x2 = j;
-//			printf("NESTED FOR: %d %d\n", i, j);
-//			fflush(stdout);
 		}
 	}
 
 	random_shuffle(Grid_cells, GRID_WIDTH * GRID_HEIGHT);
-
-	printf("SHUFFLED\n");
-	fflush(stdout);
 
 	for (int i = 0; i < neutral_territories; i++) {
 		int x = Grid_cells[i].x1;
@@ -92,9 +74,6 @@ void make_random_map(int number_of_opponents) {
 		TOTAL_SOLDIERS_COUNT += NEUTRAL_INITIAL_SOLDIERS;
 	}
 
-	printf("NEUTRAL CHECKED\n");
-	fflush(stdout);
-
 	for (int i = neutral_territories; i < neutral_territories + sea_zones; i++) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
@@ -104,9 +83,6 @@ void make_random_map(int number_of_opponents) {
 		CASTLE_PTRS[x][y]->Soldiers_count = 0;
 		CASTLE_PTRS[x][y]->Player = Players + 1;
 	}
-
-	printf("SEA CHECKED\n");
-	fflush(stdout);
 
 	for (int i = neutral_territories + sea_zones; i < neutral_territories + sea_zones + NUMBER_OF_PLAYERS - 2; i++) {
 		int x = Grid_cells[i].x1;
@@ -120,9 +96,6 @@ void make_random_map(int number_of_opponents) {
 		TOTAL_SOLDIERS_COUNT += INITIAL_SOLDIERS;
 	}
 
-	printf("OPONNENTS CHECKED\n");
-	fflush(stdout);
-
 	TUPLE Borders[GRID_WIDTH * GRID_HEIGHT * 4 + 10];
 	int ptr = 0;
 
@@ -134,9 +107,6 @@ void make_random_map(int number_of_opponents) {
 		}
 	}
 
-	printf("FIRST BORDERS ADDED\n");
-	fflush(stdout);
-	
 	random_shuffle(Borders, ptr);
 
 	for (int i = 0; i < GRID_WIDTH * GRID_HEIGHT * 4; i++) {

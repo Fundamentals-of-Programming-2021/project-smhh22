@@ -55,20 +55,13 @@ int main() {
 	double food_rx = 15;
 	double food_ry = 10;
 
-	printf("START\n");
-	fflush(stdout);
-
 //	Read_map("maps/map1.txt");
 
 	init();
 
-//	Define_global_size_variables();
-
 	make_random_map(-1);
 	Define_global_size_variables();
-	Save_map_to_end();
-	printf("CASTLE_SIZE: %d\n", CASTLE_SIZE);
-	printf("CELL_WIDTH: %d\n", CELL_WIDTH);
+//	Save_map_to_end();
 
 	HEAD = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
 	HEAD->x = 500;
@@ -79,9 +72,7 @@ int main() {
 	show_sample(RENDERER);
 
 	SDL_RenderPresent(RENDERER);
-//	SDL_Delay(10000);
 
-//	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window* window = SDL_CreateWindow("workshop", 20, 20, 800, 600, SDL_WINDOW_OPENGL);
 	SDL_HideWindow(window);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -94,7 +85,7 @@ int main() {
         if (handleEvents(&snake_x, &snake_y) == EXIT) break;
 
     	SDL_SetRenderDrawColor(renderer, 120, 60, 80, 255);
-    	SDL_SetRenderDrawColor(RENDERER, 0xdd, 0xdd, 0xdd, 0xff);
+    	SDL_SetRenderDrawColor(RENDERER, 0xee, 0xdd, 0xdd, 0xff);
     	SDL_RenderClear(renderer);
     	SDL_RenderClear(RENDERER);
 
