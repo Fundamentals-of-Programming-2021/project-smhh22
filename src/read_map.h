@@ -4,6 +4,10 @@
 
 #include "header.h"
 
+void Read_map(char *str);
+int read_map_cnt();
+void assign_map_cnt(int x);
+
 void Read_map(char *str) {
 	FILE* Map_file = fopen(str, "r");
 
@@ -28,7 +32,7 @@ void Read_map(char *str) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			for (int k = 0; k < 4; k++) {
-				fscanf(Map_file, "%d ", &GRID[i][j].Border_shown[k]);
+				fscanf(Map_file, "%hhd ", &GRID[i][j].Border_shown[k]);
 			}
 
 			int x, y;
@@ -61,4 +65,17 @@ void Read_map(char *str) {
 		}
 	}
 	fclose(Map_file);
+}
+
+int read_map_cnt() {
+	FILE *file = fopen("maps/map_cnt.txt", "r");
+	int ans;
+	fscanf(file, "%d", &ans);
+	fclose(file);
+}
+
+void assign_map_cnt(int x) {
+	FILE *file = fopen("maps/map_cnt.txt", "w");
+	fprintf(file, "%d", x);
+	fclose(file);
 }

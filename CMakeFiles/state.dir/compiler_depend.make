@@ -192,8 +192,18 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/SDL2/SDL_timer.h \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL2_gfxPrimitives.h \
-  /usr/include/SDL2/SDL.h
+  /usr/include/SDL2/SDL.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h
 
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/time.h:
 
 /usr/include/SDL2/SDL_timer.h:
 
@@ -402,6 +412,8 @@ src/main.c:
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avx512vbmi2intrin.h:
 
 /usr/include/SDL2/SDL_stdinc.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/SDL2/SDL_rect.h:
 

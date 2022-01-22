@@ -96,7 +96,6 @@ int main() {
     	filledEllipseRGBA(renderer, food_x, food_y, food_rx, food_ry, rand() % 255, rand() % 255, rand() % 255, 255);
         char* buffer = (char*)malloc(sizeof(char) * 50);
         sprintf(buffer, "score: %d   elapsed time: %dms", snake_score, start_ticks - begining_of_time);
-        printf("%s", buffer);
         stringRGBA(renderer, 5, 5, buffer, 0, 0, 0, 255);
 
 		show_sample(RENDERER);

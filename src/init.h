@@ -3,11 +3,13 @@
 #pragma once
 
 #include "show.h"
+#include <time.h>
 
 void init();
 void Define_global_size_variables();
 
 void init () {
+	srand(time(0));
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	WINDOW = SDL_CreateWindow("State.io", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1240, 640, SDL_WINDOW_OPENGL);
 	RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED);
