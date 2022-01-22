@@ -3,6 +3,7 @@
 #pragma once
 
 #include "read_map.h"
+#include "random_map.h"
 
 void show_background(SDL_Renderer*);
 void show_map(SDL_Renderer*);

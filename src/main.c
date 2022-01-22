@@ -58,6 +58,10 @@ int main() {
 	Read_map("maps/map0.txt");
 	init();
 	Define_global_size_variables();
+	make_random_map(-1);
+	Define_global_size_variables();
+	printf("CASTLE_SIZE: %d\n", CASTLE_SIZE);
+	printf("CELL_WIDTH: %d\n", CELL_WIDTH);
 
 	HEAD = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
 	HEAD->x = 500;
@@ -72,6 +76,7 @@ int main() {
 
 //	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Window* window = SDL_CreateWindow("workshop", 20, 20, 800, 600, SDL_WINDOW_OPENGL);
+	SDL_HideWindow(window);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     int begining_of_time = SDL_GetTicks();

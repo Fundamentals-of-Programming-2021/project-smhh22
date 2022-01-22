@@ -3,13 +3,11 @@
 #pragma once
 
 #include "show.h"
-#include <time.h>
 
 void init();
 void Define_global_size_variables();
 
 void init () {
-	srand(time(0));
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	WINDOW = SDL_CreateWindow("State.io", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1240, 640, SDL_WINDOW_OPENGL);
 	RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED);
@@ -43,7 +41,16 @@ void Define_global_size_variables() {
 	CELL_WIDTH = WIDTH / GRID_WIDTH;
 	CELL_HEIGHT = HEIGHT / GRID_HEIGHT;
 
-	CASTLE_SIZE = min(CELL_WIDTH, CELL_HEIGHT) * 4 / 5;
+	printf("CELL WIDTH: %d\n", CELL_WIDTH);
+	printf("CELL HEIGHT: %d\n", CELL_HEIGHT);
+	printf("min: %d\n", min(CELL_WIDTH, CELL_HEIGHT));
+	printf("expected: %f\n", min(CELL_WIDTH, CELL_HEIGHT) * 4.0 / 5.0);
+
+	int mn = min(CELL_WIDTH, CELL_HEIGHT);
+
+	CASTLE_SIZE = mn * 4.0 / 5.0;
+	
+	printf("CASTLE SIZE: %d\n", CASTLE_SIZE);
 
 //	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
 
