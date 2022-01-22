@@ -7,6 +7,7 @@
 void Read_map(char *str);
 int read_map_cnt();
 void assign_map_cnt(int x);
+void Save_map_to_end();
 
 void Read_map(char *str) {
 	FILE* Map_file = fopen(str, "r");
@@ -35,8 +36,9 @@ void Read_map(char *str) {
 				fscanf(Map_file, "%hhd ", &GRID[i][j].Border_shown[k]);
 			}
 
-			int x, y;
-			fscanf(Map_file, "%d %d ", &x, &y);
+			fscanf(Map_file, "%d %d ", &GRID[i][j].Castle_x, &GRID[i][j].Castle_y);
+			int x = GRID[i][j].Castle_x;
+			int y = GRID[i][j].Castle_y;
 			if (CASTLE_PTRS[x][y] != NULL) {
 				GRID[i][j].Castle_ptr = CASTLE_PTRS[x][y];
 			}
@@ -48,7 +50,7 @@ void Read_map(char *str) {
 
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
-			char* mode = (char*)malloc(sizeof(char) * 30);
+			char mode[30];
 			fscanf(Map_file, "%s ", mode);
 
 			if (mode[0] != 'N') {
@@ -60,8 +62,55 @@ void Read_map(char *str) {
 
 				TOTAL_SOLDIERS_COUNT += CASTLE_PTRS[i][j]->Soldiers_count;
 			}
+		}
+	}
+	fclose(Map_file);
+}
 
-			free(mode);
+void Save_map_to_end() {
+	printf("SALAM\n");
+	fflush(stdout);
+	char str[100];
+	int MAP_ID = read_map_cnt();
+	sprintf(str, "maps/map%d.txt", MAP_ID);
+//	printf("FILE OPENED\n");
+//	fflush(stdout);
+	assign_map_cnt(MAP_ID + 1);
+
+	FILE* Map_file = fopen(str, "w");
+
+	fprintf(Map_file, "%d\n", NUMBER_OF_PLAYERS);
+	fprintf(Map_file, "%d\n", GRID_WIDTH);
+	fprintf(Map_file, "%d\n", GRID_HEIGHT);
+
+	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
+		fprintf(Map_file, "%x\n", Players[i].Color);
+	}
+
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		for (int j = 0; j < GRID_HEIGHT; j++) {
+			for (int k = 0; k < 4; k++) {
+				fprintf(Map_file, "%hhd ", GRID[i][j].Border_shown[k]);
+			}
+
+			fprintf(Map_file, "\n");
+
+			fprintf(Map_file, "%d %d\n", GRID[i][j].Castle_x, GRID[i][j].Castle_y);
+		}
+	}
+
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		for (int j = 0; j < GRID_HEIGHT; j++) {
+			char mode[30];
+			if (CASTLE_PTRS[i][j]) sprintf(mode, "%s", "Otherwise");
+			else sprintf(mode, "%s", "Null");
+			fprintf(Map_file, "%s\n", mode);
+
+			if (mode[0] != 'N') {
+				fprintf(Map_file, "%d\n", CASTLE_PTRS[i][j]->Soldiers_count);
+				int p = CASTLE_PTRS[i][j]->Player - Players;
+				fprintf(Map_file, "%d\n", p);
+			}
 		}
 	}
 	fclose(Map_file);
@@ -70,12 +119,13 @@ void Read_map(char *str) {
 int read_map_cnt() {
 	FILE *file = fopen("maps/map_cnt.txt", "r");
 	int ans;
-	fscanf(file, "%d", &ans);
+	fscanf(file, "%d\n", &ans);
 	fclose(file);
+	return ans;
 }
 
 void assign_map_cnt(int x) {
 	FILE *file = fopen("maps/map_cnt.txt", "w");
-	fprintf(file, "%d", x);
+	fprintf(file, "%d\n", x);
 	fclose(file);
 }

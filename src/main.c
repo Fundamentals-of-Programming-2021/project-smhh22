@@ -55,11 +55,18 @@ int main() {
 	double food_rx = 15;
 	double food_ry = 10;
 
-	Read_map("maps/map0.txt");
+	printf("START\n");
+	fflush(stdout);
+
+//	Read_map("maps/map1.txt");
+
 	init();
-	Define_global_size_variables();
+
+//	Define_global_size_variables();
+
 	make_random_map(-1);
 	Define_global_size_variables();
+	Save_map_to_end();
 	printf("CASTLE_SIZE: %d\n", CASTLE_SIZE);
 	printf("CELL_WIDTH: %d\n", CELL_WIDTH);
 

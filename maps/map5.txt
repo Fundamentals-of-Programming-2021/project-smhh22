@@ -1,0 +1,501 @@
+6
+19
+8
+0
+ff0000
+ff00
+ffff00
+ff
+ff00ff
+1 1 0 1 
+0 4
+0 0 0 1 
+0 4
+0 0 0 1 
+0 4
+0 1 0 1 
+0 4
+0 1 1 1 
+0 4
+1 0 0 1 
+1 5
+0 1 0 1 
+1 5
+0 1 1 1 
+1 5
+1 0 1 1 
+2 2
+1 1 0 0 
+0 4
+0 1 1 0 
+0 4
+1 1 0 1 
+1 3
+0 0 1 1 
+1 3
+1 0 1 0 
+1 5
+1 0 0 1 
+1 7
+0 0 1 1 
+1 7
+1 0 0 0 
+2 2
+0 0 0 1 
+2 2
+0 1 0 1 
+2 2
+0 0 1 1 
+2 2
+1 0 1 0 
+1 3
+1 0 1 0 
+1 5
+1 0 0 0 
+1 7
+0 0 1 0 
+1 7
+1 0 0 0 
+2 2
+0 0 1 0 
+2 2
+1 0 1 1 
+4 4
+1 1 1 0 
+2 2
+1 1 1 0 
+1 3
+1 1 1 0 
+1 5
+1 0 0 0 
+1 7
+0 0 1 0 
+1 7
+1 0 0 0 
+2 2
+0 0 1 0 
+2 2
+1 1 0 0 
+4 4
+0 1 0 1 
+4 4
+0 1 0 1 
+4 4
+0 1 1 1 
+4 4
+1 1 0 0 
+1 7
+0 1 1 0 
+1 7
+1 1 0 0 
+2 2
+0 1 1 0 
+2 2
+1 0 1 1 
+6 5
+1 1 0 1 
+5 5
+0 1 0 1 
+5 5
+0 1 1 1 
+5 5
+1 0 0 1 
+6 5
+0 0 1 1 
+6 5
+1 0 1 1 
+12 0
+1 1 0 1 
+6 5
+0 0 0 0 
+6 5
+0 0 0 1 
+6 5
+0 0 0 1 
+6 5
+0 0 0 1 
+6 5
+0 0 0 0 
+6 5
+0 0 1 0 
+6 5
+1 0 0 0 
+12 0
+0 0 1 1 
+12 0
+1 1 0 0 
+6 5
+0 1 0 0 
+6 5
+0 1 0 0 
+6 5
+0 0 0 0 
+6 5
+0 1 0 0 
+6 5
+0 1 1 0 
+6 5
+1 0 0 0 
+12 0
+0 1 1 0 
+12 0
+1 0 0 1 
+9 3
+0 0 0 1 
+9 3
+0 0 1 1 
+9 3
+1 1 1 0 
+6 5
+1 0 0 1 
+10 5
+0 0 1 1 
+10 5
+1 0 1 0 
+12 0
+1 1 0 1 
+9 3
+0 1 0 0 
+9 3
+0 1 0 0 
+9 3
+0 1 1 0 
+9 3
+1 0 0 1 
+10 5
+0 1 0 0 
+10 5
+0 1 1 0 
+10 5
+1 0 0 0 
+12 0
+0 0 1 1 
+12 0
+1 0 0 1 
+11 3
+0 0 1 1 
+11 3
+1 1 0 1 
+10 5
+0 1 1 0 
+10 5
+1 0 0 1 
+13 6
+0 0 1 1 
+13 6
+1 0 0 0 
+12 0
+0 0 1 0 
+12 0
+1 1 0 0 
+11 3
+0 0 1 0 
+11 3
+1 1 0 1 
+11 4
+0 0 1 1 
+11 4
+1 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 1 0 0 
+12 0
+0 0 0 0 
+12 0
+0 1 1 1 
+12 0
+1 1 1 0 
+11 3
+1 1 1 1 
+12 4
+1 1 1 0 
+11 4
+1 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 0 1 1 
+14 0
+1 1 1 0 
+12 0
+1 0 0 1 
+14 0
+0 1 1 1 
+14 0
+1 1 0 1 
+13 6
+0 0 0 1 
+13 6
+0 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 1 0 0 
+14 0
+0 1 0 1 
+14 0
+0 1 1 0 
+14 0
+1 0 0 1 
+14 3
+0 0 1 1 
+14 3
+1 0 0 0 
+13 6
+0 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 0 0 1 
+15 0
+0 1 1 1 
+15 0
+1 0 0 1 
+14 3
+0 0 0 0 
+14 3
+0 0 1 0 
+14 3
+1 0 0 0 
+13 6
+0 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 0 1 0 
+15 0
+1 1 0 1 
+14 3
+0 1 0 0 
+14 3
+0 0 0 0 
+14 3
+0 0 1 0 
+14 3
+1 1 0 0 
+13 6
+0 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 0 0 0 
+15 0
+0 0 0 1 
+15 0
+0 0 1 1 
+15 0
+1 1 0 0 
+14 3
+0 0 0 0 
+14 3
+0 1 1 1 
+14 3
+1 0 0 0 
+13 6
+0 0 1 0 
+13 6
+1 1 0 0 
+15 0
+0 1 0 0 
+15 0
+0 1 0 0 
+15 0
+0 1 1 1 
+15 0
+1 1 1 0 
+14 3
+1 1 0 1 
+13 6
+0 1 0 0 
+13 6
+0 1 1 0 
+13 6
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Otherwise
+100
+0
+Null
+Otherwise
+0
+1
+Null
+Null
+Otherwise
+0
+1
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+125
+4
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Otherwise
+0
+1
+Otherwise
+125
+3
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Otherwise
+125
+2
+Null
+Otherwise
+125
+5
+Null
+Null
+Otherwise
+0
+1
+Null
+Null
+Null
+Null
+Otherwise
+100
+0
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null
+Null

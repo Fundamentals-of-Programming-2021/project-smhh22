@@ -55,6 +55,8 @@ typedef struct TUPLE TUPLE;
 struct CELL {
 	int16_t x1, x2, y1, y2;
 	int8_t Border_shown[4]; // UP, RIGHT, DOWN, LEFT
+	int Castle_x;
+	int Castle_y;
 	CASTLE* Castle_ptr;
 };
 

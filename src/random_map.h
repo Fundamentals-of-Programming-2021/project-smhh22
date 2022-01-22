@@ -18,7 +18,7 @@ void make_random_map(int number_of_opponents) {
 	printf("number_of_opponents: %d\n", number_of_opponents);
 	fflush(stdout);
 	NUMBER_OF_PLAYERS = number_of_opponents + 3;
-	CELL_WIDTH = rand() % 25 + 50;
+	CELL_WIDTH = rand() % 50 + 40;
 	GRID_WIDTH = (SCREEN_WIDTH - WINDOW_PADDING_RIGHT - WINDOW_PADDING_LEFT) / CELL_WIDTH;
 	GRID_HEIGHT = (SCREEN_HEIGHT - WINDOW_PADDING_UP - WINDOW_PADDING_DOWN) / CELL_WIDTH;
 
@@ -59,8 +59,8 @@ void make_random_map(int number_of_opponents) {
 
 	TUPLE Grid_cells[GRID_WIDTH * GRID_HEIGHT];
 
-	int neutral_territories = rand() % (2 * NUMBER_OF_PLAYERS) + NUMBER_OF_PLAYERS;
-	int sea_zones = rand() % 3 + 3; 
+	int neutral_territories = rand() % (NUMBER_OF_PLAYERS) + NUMBER_OF_PLAYERS;
+	int sea_zones = rand() % 4 + 3; 
 
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
@@ -84,6 +84,8 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		GRID[x][y].Castle_x = x;
+		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = NEUTRAL_INITIAL_SOLDIERS;
 		CASTLE_PTRS[x][y]->Player = Players + 0;
 		CASTLE_PTRS[x][y]->Player->Soldiers_count += NEUTRAL_INITIAL_SOLDIERS;
@@ -97,6 +99,8 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		GRID[x][y].Castle_x = x;
+		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = 0;
 		CASTLE_PTRS[x][y]->Player = Players + 1;
 	}
@@ -108,6 +112,8 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		GRID[x][y].Castle_x = x;
+		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = INITIAL_SOLDIERS;
 		CASTLE_PTRS[x][y]->Player = Players + 2 + i - neutral_territories - sea_zones;
 		CASTLE_PTRS[x][y]->Player->Soldiers_count += INITIAL_SOLDIERS;
@@ -148,6 +154,8 @@ void make_random_map(int number_of_opponents) {
 		if (nx < 0 || ny < 0 || nx >= GRID_WIDTH || ny >= GRID_HEIGHT) continue;
 		if (GRID[nx][ny].Castle_ptr == NULL) {
 			GRID[nx][ny].Castle_ptr = GRID[x][y].Castle_ptr;
+			GRID[nx][ny].Castle_x = GRID[x][y].Castle_x;
+			GRID[nx][ny].Castle_y = GRID[x][y].Castle_y;
 			GRID[x][y].Border_shown[k] = 0;
 			for (int k2 = 0; k2 < 4; k2++) {
 				Borders[ptr].x1 = nx;

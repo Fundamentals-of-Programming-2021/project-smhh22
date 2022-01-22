@@ -14,14 +14,21 @@ void init () {
 	SDL_SetRenderDrawColor(RENDERER, 0xdd, 0xdd, 0xdd, 0xff);
 	SDL_RenderClear(RENDERER);
 //	Add SDL_WINDOW_RESIZABLE to flags.
-}
 
-void Define_global_size_variables() {
 	SDL_GL_GetDrawableSize(WINDOW, &SCREEN_WIDTH, &SCREEN_HEIGHT);
 	WINDOW_PADDING_UP = SCREEN_HEIGHT / 5;
 	WINDOW_PADDING_RIGHT = SCREEN_WIDTH / 15;
 	WINDOW_PADDING_DOWN = SCREEN_HEIGHT / 10;
 	WINDOW_PADDING_LEFT = SCREEN_WIDTH / 15;
+}
+
+void Define_global_size_variables() {
+	printf("START DEFINE\n");
+	fflush(stdout);
+
+
+	printf("CONTINUE DEFINE %d\n", GRID_WIDTH);
+	fflush(stdout);
 
 	WIDTH = SCREEN_WIDTH - WINDOW_PADDING_RIGHT - WINDOW_PADDING_LEFT;
 	HEIGHT = SCREEN_HEIGHT - WINDOW_PADDING_UP - WINDOW_PADDING_DOWN;
@@ -43,8 +50,7 @@ void Define_global_size_variables() {
 
 	printf("CELL WIDTH: %d\n", CELL_WIDTH);
 	printf("CELL HEIGHT: %d\n", CELL_HEIGHT);
-	printf("min: %d\n", min(CELL_WIDTH, CELL_HEIGHT));
-	printf("expected: %f\n", min(CELL_WIDTH, CELL_HEIGHT) * 4.0 / 5.0);
+	fflush(stdout);
 
 	int mn = min(CELL_WIDTH, CELL_HEIGHT);
 
