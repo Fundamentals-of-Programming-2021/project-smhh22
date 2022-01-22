@@ -28,8 +28,9 @@ void show_background(SDL_Renderer* renderer) {
 void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
-			if (GRID[i][j].Castle_ptr->Player != Players + 1)
+			if (GRID[i][j].Castle_ptr->Player != Players + 1) {
 				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color | (GRID[i][j].Castle_ptr->Soldiers_count * 0x01000000));
+			}
 			else {
 				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, 0xffff5000);
 			}
@@ -55,6 +56,8 @@ void show_map(SDL_Renderer *renderer) {
 				int my = (GRID[i][j].y1 + GRID[i][j].y2) / 2;
 				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color | 0xff000000);
 
+				rectangleColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
+
 				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
 				int len = sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
 				stringColor(renderer, mx - len * 4, my - 4, Sol_cnt, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
@@ -71,10 +74,10 @@ void show_bar(SDL_Renderer *renderer) {
 
 	double sum = 0;
 	for (int i = 2; i < NUMBER_OF_PLAYERS; i++) {
-		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
+		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
 		sum += Players[i].Soldiers_count;
 	}
-	thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[0].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[0].Color | 0xff000000);
+	thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[0].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[0].Color | 0xff000000);
 }
 
 void show_potion(SDL_Renderer *renderer, int x, int y, char *type) {

@@ -29,6 +29,9 @@ void Define_global_size_variables() {
 	CELL_WIDTH = WIDTH / GRID_WIDTH;
 	CELL_HEIGHT = HEIGHT / GRID_HEIGHT;
 
+	WIDTH = GRID_WIDTH * CELL_WIDTH;
+	HEIGHT = GRID_HEIGHT * CELL_HEIGHT;
+
 	int mn = min(CELL_WIDTH, CELL_HEIGHT);
 
 	CASTLE_SIZE = mn * 4.0 / 5.0;
