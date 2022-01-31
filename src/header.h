@@ -14,6 +14,9 @@
 const int DELTA_X[4] = {0, +1, 0, -1};
 const int DELTA_Y[4] = {-1, 0, +1, 0};
 
+const float SOLDIERS_SPEED = 2;
+const float DEPLOYMENT_RATE = 5;
+
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
 
@@ -44,7 +47,7 @@ int TOTAL_SOLDIERS_COUNT;
 
 int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player 1: The sea, Player 2: User.
 
-const double FPS = 60;
+const double FPS = 30;
 
 typedef enum Game_mode {GAME, EXIT} Game_mode;
 typedef struct CASTLE CASTLE;
@@ -65,7 +68,9 @@ struct CASTLE {
 	int x, y; //Lies in which cell?
 	int Soldiers_count;
 	int to_be_deployed;
-	CASTLE* Deployment_dest;
+	int Deployment_dest_x;
+	int Deployment_dest_y;
+	int last_deploy;
 	PLAYER* Deployer;
 	PLAYER* Player;
 };
@@ -79,8 +84,8 @@ struct PLAYER {
 struct DEPLOYED_SOLDIER {
 	PLAYER* Player;
 	CASTLE* Dest;
-	float x, y;
-	float vx, vy;
+	int x, y;
+	int vx, vy;
 	DEPLOYED_SOLDIER *nxt, *prv;
 };
 

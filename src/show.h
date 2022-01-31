@@ -114,5 +114,7 @@ void show_sample(SDL_Renderer *renderer) {
 	show_potion(renderer, 1, 1, "S1");
 	show_potion(renderer, 2, 2, "C2");
 	soldiers_motion();
+	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, 4, 4, 2);
+	deploy_all();
 	show_soldiers(renderer);
 }
