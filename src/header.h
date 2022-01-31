@@ -14,8 +14,8 @@
 const int DELTA_X[4] = {0, +1, 0, -1};
 const int DELTA_Y[4] = {-1, 0, +1, 0};
 
-const float SOLDIERS_SPEED = 2;
-const float DEPLOYMENT_RATE = 6;
+const float SOLDIERS_SPEED = 3;
+const float DEPLOYMENT_RATE = 10;
 
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
