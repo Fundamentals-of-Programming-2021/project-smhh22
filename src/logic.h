@@ -5,7 +5,7 @@
 #include "header.h"
 
 void soldiers_motion();
-void add_soldier(int, int, int, int, int, int, int);
+void add_soldier(float, float, float, float, int, int, int);
 void remove_soldier(DEPLOYED_SOLDIER*);
 void schedule_deployment(int, int, int, int, int);
 
@@ -18,7 +18,7 @@ void soldiers_motion() {
 	}
 }
 
-void add_soldier(int x, int y, int vx, int vy, int p, int dx, int dy) {
+void add_soldier(float x, float y, float vx, float vy, int p, int dx, int dy) {
 	DEPLOYED_SOLDIER *NEW = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
 	NEW->Player = Players + p;
 	NEW->Dest = CASTLE_PTRS[dx][dy];
@@ -61,15 +61,16 @@ void deploy_all() {
 				continue;
 			int di = CASTLE_PTRS[i][j]->Deployment_dest_x;
 			int dj = CASTLE_PTRS[i][j]->Deployment_dest_y;
-			int ox = (GRID[i][j].x1 + GRID[i][j].x2) / 2;
-			int oy = (GRID[i][j].y1 + GRID[i][j].y2) / 2;
-			int dx = (GRID[di][dj].x1 + GRID[di][dj].x2) / 2;
-			int dy = (GRID[di][dj].y1 + GRID[di][dj].y2) / 2;
-			int vx = SOLDIERS_SPEED * (dx - ox) / sqrt((dx - ox) * (dx - ox) + (dy - oy) * (dy - oy));
-			int vy = SOLDIERS_SPEED * (dy - oy) / sqrt((dx - ox) * (dx - ox) + (dy - oy) * (dy - oy));
+			float ox = (GRID[i][j].x1 + GRID[i][j].x2) / 2.0;
+			float oy = (GRID[i][j].y1 + GRID[i][j].y2) / 2.0;
+			float dx = (GRID[di][dj].x1 + GRID[di][dj].x2) / 2.0;
+			float dy = (GRID[di][dj].y1 + GRID[di][dj].y2) / 2.0;
+			float vx = SOLDIERS_SPEED * (dx - ox) / sqrt((dx - ox) * (dx - ox) + (dy - oy) * (dy - oy));
+			float vy = SOLDIERS_SPEED * (dy - oy) / sqrt((dx - ox) * (dx - ox) + (dy - oy) * (dy - oy));
 			add_soldier(ox, oy, vx, vy, CASTLE_PTRS[i][j]->Player-Players, di, dj);
 			CASTLE_PTRS[i][j]->Soldiers_count--;
 			CASTLE_PTRS[i][j]->to_be_deployed--;
+			CASTLE_PTRS[i][j]->to_be_deployed = min(CASTLE_PTRS[i][j]->to_be_deployed, CASTLE_PTRS[i][j]->Soldiers_count);
 			CASTLE_PTRS[i][j]->last_deploy = SDL_GetTicks();
 		}
 	}
