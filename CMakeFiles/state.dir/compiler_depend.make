@@ -199,8 +199,11 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/assert.h \
-  src/logic.h
+  src/logic.h \
+  src/event_handling.h
 
+
+src/event_handling.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 

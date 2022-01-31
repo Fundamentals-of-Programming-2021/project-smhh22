@@ -46,6 +46,7 @@ int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player
 
 const double FPS = 60;
 
+typedef enum Game_mode {GAME, EXIT} Game_mode;
 typedef struct CASTLE CASTLE;
 typedef struct CELL CELL;
 typedef struct PLAYER PLAYER;
@@ -98,3 +99,5 @@ SDL_Window* WINDOW;
 SDL_Renderer* RENDERER;
 
 DEPLOYED_SOLDIER *HEAD = NULL;
+
+Game_mode MODE;
