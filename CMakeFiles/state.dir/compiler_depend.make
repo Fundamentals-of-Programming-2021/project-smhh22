@@ -198,7 +198,8 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/x86_64-linux-gnu/bits/time.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
-  /usr/include/assert.h
+  /usr/include/assert.h \
+  src/logic.h
 
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
@@ -468,6 +469,8 @@ src/main.c:
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+src/logic.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 

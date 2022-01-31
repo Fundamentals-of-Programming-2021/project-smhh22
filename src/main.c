@@ -63,11 +63,8 @@ int main() {
 	Define_global_size_variables();
 //	Save_map_to_end();
 
-	HEAD = (DEPLOYED_SOLDIER*)malloc(sizeof(DEPLOYED_SOLDIER));
-	HEAD->x = 500;
-	HEAD->y = 500;
-	HEAD->nxt = HEAD->prv = NULL;
-	HEAD->Player = Players + 1;
+	add_soldier(500, 500, 1, -1, 1, 2, 2);
+	add_soldier(600, 600, 0.5, -1, 2, 2, 2);
 	
 	show_sample(RENDERER);
 
@@ -80,6 +77,8 @@ int main() {
     int begining_of_time = SDL_GetTicks();
     const double FPS = 60;
     while (1) {
+		if (rand() % 60 == 0) remove_soldier(HEAD);
+
         int start_ticks = SDL_GetTicks();
 
         if (handleEvents(&snake_x, &snake_y) == EXIT) break;

@@ -65,6 +65,7 @@ struct CASTLE {
 	int Soldiers_count;
 	int to_be_deployed;
 	CASTLE* Deployment_dest;
+	PLAYER* Deployer;
 	PLAYER* Player;
 };
 
@@ -77,8 +78,8 @@ struct PLAYER {
 struct DEPLOYED_SOLDIER {
 	PLAYER* Player;
 	CASTLE* Dest;
-	int x, y;
-	int vx, vy;
+	float x, y;
+	float vx, vy;
 	DEPLOYED_SOLDIER *nxt, *prv;
 };
 

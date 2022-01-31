@@ -161,4 +161,4 @@ CMakeFiles/state.dir/src/main.c.o: \
  /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /usr/include/assert.h
+ /usr/include/assert.h /home/a/Desktop/Sharif/1/Proj/state.io/src/logic.h

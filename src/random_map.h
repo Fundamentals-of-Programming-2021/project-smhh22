@@ -21,10 +21,12 @@ void make_random_map(int number_of_opponents) {
 	GRID_HEIGHT = (SCREEN_HEIGHT - WINDOW_PADDING_UP - WINDOW_PADDING_DOWN) / CELL_WIDTH;
 
 	Players = (PLAYER*)malloc(sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	memset(Players, 0, sizeof(PLAYER) * NUMBER_OF_PLAYERS);
 	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
 	CASTLE_PTRS = (CASTLE***)malloc(sizeof(CASTLE**) * GRID_WIDTH);
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		GRID[i] = (CELL*)malloc(sizeof(CELL) * GRID_HEIGHT);
+		memset(GRID[i], 0, sizeof(CELL) * GRID_HEIGHT);
 		CASTLE_PTRS[i] = (CASTLE**)malloc(sizeof(CASTLE*) * GRID_HEIGHT);
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			CASTLE_PTRS[i][j] = NULL;
@@ -66,6 +68,7 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		memset(CASTLE_PTRS[x][y], 0, sizeof(CASTLE));
 		GRID[x][y].Castle_x = x;
 		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = NEUTRAL_INITIAL_SOLDIERS;
@@ -78,6 +81,7 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		memset(CASTLE_PTRS[x][y], 0, sizeof(CASTLE));
 		GRID[x][y].Castle_x = x;
 		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = 0;
@@ -88,6 +92,7 @@ void make_random_map(int number_of_opponents) {
 		int x = Grid_cells[i].x1;
 		int y = Grid_cells[i].x2;
 		GRID[x][y].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+		memset(CASTLE_PTRS[x][y], 0, sizeof(CASTLE));
 		GRID[x][y].Castle_x = x;
 		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = INITIAL_SOLDIERS;

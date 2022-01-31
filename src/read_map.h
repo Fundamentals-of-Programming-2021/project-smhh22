@@ -17,10 +17,12 @@ void Read_map(char *str) {
 	fscanf(Map_file, "%d ", &GRID_HEIGHT);
 
 	Players = (PLAYER*)malloc(sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	memset(Players, 0, sizeof(PLAYER) * NUMBER_OF_PLAYERS);
 	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
 	CASTLE_PTRS = (CASTLE***)malloc(sizeof(CASTLE**) * GRID_WIDTH);
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		GRID[i] = (CELL*)malloc(sizeof(CELL) * GRID_HEIGHT);
+		memset(GRID[i], 0, sizeof(CELL) * GRID_HEIGHT);
 		CASTLE_PTRS[i] = (CASTLE**)malloc(sizeof(CASTLE*) * GRID_HEIGHT);
 	}
 
@@ -44,6 +46,7 @@ void Read_map(char *str) {
 			}
 			else {
 				GRID[i][j].Castle_ptr = CASTLE_PTRS[x][y] = (CASTLE*)malloc(sizeof(CASTLE));
+				memset(CASTLE_PTRS[x][y], 0, sizeof(CASTLE));
 			}
 		}
 	}

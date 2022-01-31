@@ -4,6 +4,7 @@
 
 #include "read_map.h"
 #include "random_map.h"
+#include "logic.h"
 
 void show_background(SDL_Renderer*);
 void show_map(SDL_Renderer*);
@@ -112,5 +113,6 @@ void show_sample(SDL_Renderer *renderer) {
 	show_bar(renderer);
 	show_potion(renderer, 1, 1, "S1");
 	show_potion(renderer, 2, 2, "C2");
+	soldiers_motion();
 	show_soldiers(renderer);
 }
