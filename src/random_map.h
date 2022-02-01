@@ -74,6 +74,8 @@ void make_random_map(int number_of_opponents) {
 		CASTLE_PTRS[x][y]->Soldiers_count = NEUTRAL_INITIAL_SOLDIERS;
 		CASTLE_PTRS[x][y]->Player = Players + 0;
 		CASTLE_PTRS[x][y]->Player->Soldiers_count += NEUTRAL_INITIAL_SOLDIERS;
+		CASTLE_PTRS[x][y]->x = x;
+		CASTLE_PTRS[x][y]->y = y;
 		TOTAL_SOLDIERS_COUNT += NEUTRAL_INITIAL_SOLDIERS;
 	}
 
@@ -86,6 +88,8 @@ void make_random_map(int number_of_opponents) {
 		GRID[x][y].Castle_y = y;
 		CASTLE_PTRS[x][y]->Soldiers_count = 0;
 		CASTLE_PTRS[x][y]->Player = Players + 1;
+		CASTLE_PTRS[x][y]->x = x;
+		CASTLE_PTRS[x][y]->y = y;
 	}
 
 	for (int i = neutral_territories + sea_zones; i < neutral_territories + sea_zones + NUMBER_OF_PLAYERS - 2; i++) {
@@ -98,6 +102,8 @@ void make_random_map(int number_of_opponents) {
 		CASTLE_PTRS[x][y]->Soldiers_count = INITIAL_SOLDIERS;
 		CASTLE_PTRS[x][y]->Player = Players + 2 + i - neutral_territories - sea_zones;
 		CASTLE_PTRS[x][y]->Player->Soldiers_count += INITIAL_SOLDIERS;
+		CASTLE_PTRS[x][y]->x = x;
+		CASTLE_PTRS[x][y]->y = y;
 		TOTAL_SOLDIERS_COUNT += INITIAL_SOLDIERS;
 	}
 

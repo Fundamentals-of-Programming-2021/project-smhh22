@@ -9,6 +9,7 @@
 
 #define min(x, y) x < y ? x : y
 #define max(x, y) x > y ? x : y
+//#define abs(x) x < 0.0 ? -x : x
 
 //UP RIGHT DOWN LEFT
 const int DELTA_X[4] = {0, +1, 0, -1};

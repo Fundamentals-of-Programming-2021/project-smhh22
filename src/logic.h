@@ -7,14 +7,36 @@
 void soldiers_motion();
 void add_soldier(float, float, float, float, int, int, int);
 void remove_soldier(DEPLOYED_SOLDIER*);
-void schedule_deployment(int, int, int, int, int);
+void schedule_deployment(int, int, int, int, PLAYER*);
+void deploy_all();
 
 void soldiers_motion() {
 	DEPLOYED_SOLDIER *cur = HEAD;
 	while (cur != NULL) {
 		cur->x += cur->vx;
 		cur->y += cur->vy;
-		cur = cur->nxt;
+		int mx = (GRID[cur->Dest->x][cur->Dest->y].x1 + GRID[cur->Dest->x][cur->Dest->y].x2) / 2;
+		int my = (GRID[cur->Dest->x][cur->Dest->y].y1 + GRID[cur->Dest->x][cur->Dest->y].y2) / 2;
+		if ((int)(fabs(cur->x - mx)) <= CASTLE_SIZE / 2 && (int)(fabs(cur->y - my)) <= CASTLE_SIZE / 2) {
+			DEPLOYED_SOLDIER *tmp = cur->nxt;
+			if (cur->Dest->Player == cur->Player) {
+				cur->Dest->Soldiers_count++;
+			}
+			else if (!cur->Dest->Soldiers_count) {
+				cur->Dest->Soldiers_count++;
+				cur->Dest->Player = cur->Player;
+			}
+			else {
+				cur->Dest->Soldiers_count--;
+				cur->Dest->Player->Soldiers_count--;
+				cur->Player->Soldiers_count--;
+				TOTAL_SOLDIERS_COUNT -= 2;
+			}
+			remove_soldier(cur);
+			cur = tmp;
+		}
+		else
+			cur = cur->nxt;
 	}
 }
 
@@ -33,6 +55,7 @@ void add_soldier(float x, float y, float vx, float vy, int p, int dx, int dy) {
 }
 
 void remove_soldier(DEPLOYED_SOLDIER *cur) {
+//	printf("HEY\n");
 	if (cur == NULL) return;
 	if (cur->prv != NULL)
 		cur->prv->nxt = cur->nxt;
@@ -43,10 +66,10 @@ void remove_soldier(DEPLOYED_SOLDIER *cur) {
 	free(cur);
 }
 
-void schedule_deployment(int ox, int oy, int dx, int dy, int p) {
+void schedule_deployment(int ox, int oy, int dx, int dy, PLAYER* p) {
 	CASTLE_PTRS[ox][oy]->Deployment_dest_x = dx;
 	CASTLE_PTRS[ox][oy]->Deployment_dest_y = dy;
-	CASTLE_PTRS[ox][oy]->Deployer = Players + p;
+	CASTLE_PTRS[ox][oy]->Deployer = p;
 	CASTLE_PTRS[ox][oy]->to_be_deployed = CASTLE_PTRS[ox][oy]->Soldiers_count;
 }
 
@@ -59,8 +82,13 @@ void deploy_all() {
 				continue;
 			if (SDL_GetTicks() - CASTLE_PTRS[i][j]->last_deploy < 1000/ DEPLOYMENT_RATE)
 				continue;
+			if (CASTLE_PTRS[i][j]->Deployer != CASTLE_PTRS[i][j]->Player) {
+				CASTLE_PTRS[i][j]->to_be_deployed = 0;
+				continue;
+			}
 			int di = CASTLE_PTRS[i][j]->Deployment_dest_x;
 			int dj = CASTLE_PTRS[i][j]->Deployment_dest_y;
+
 			float ox = (GRID[i][j].x1 + GRID[i][j].x2) / 2.0;
 			float oy = (GRID[i][j].y1 + GRID[i][j].y2) / 2.0;
 			float dx = (GRID[di][dj].x1 + GRID[di][dj].x2) / 2.0;

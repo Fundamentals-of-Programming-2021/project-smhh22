@@ -62,6 +62,8 @@ void Read_map(char *str) {
 				fscanf(Map_file, "%d ", &p);
 				CASTLE_PTRS[i][j]->Player = Players + p;
 				CASTLE_PTRS[i][j]->Player->Soldiers_count += CASTLE_PTRS[i][j]->Soldiers_count;
+				CASTLE_PTRS[i][j]->x = i;
+				CASTLE_PTRS[i][j]->y = j;
 
 				TOTAL_SOLDIERS_COUNT += CASTLE_PTRS[i][j]->Soldiers_count;
 			}
