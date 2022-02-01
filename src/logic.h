@@ -55,7 +55,6 @@ void add_soldier(float x, float y, float vx, float vy, int p, int dx, int dy) {
 }
 
 void remove_soldier(DEPLOYED_SOLDIER *cur) {
-//	printf("HEY\n");
 	if (cur == NULL) return;
 	if (cur->prv != NULL)
 		cur->prv->nxt = cur->nxt;

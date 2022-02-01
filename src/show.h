@@ -60,7 +60,11 @@ void show_map(SDL_Renderer *renderer) {
 				rectangleColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 
 				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
-				int len = sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
+				int len;
+				if (Chosen != CASTLE_PTRS[i][j])
+					len = sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);
+				else
+					len = sprintf(Sol_cnt, "%d*", CASTLE_PTRS[i][j]->Soldiers_count);
 				stringColor(renderer, mx - len * 4, my - 4, Sol_cnt, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 			}
 		}
@@ -75,9 +79,11 @@ void show_bar(SDL_Renderer *renderer) {
 
 	double sum = 0;
 	for (int i = 2; i < NUMBER_OF_PLAYERS; i++) {
+		if (!Players[i].Soldiers_count) continue;
 		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
 		sum += Players[i].Soldiers_count;
 	}
+	if (!Players[0].Soldiers_count) return;
 	thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[0].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[0].Color | 0xff000000);
 }
 
@@ -114,7 +120,7 @@ void show_sample(SDL_Renderer *renderer) {
 	show_potion(renderer, 1, 1, "S1");
 //	show_potion(renderer, 2, 2, "C2");
 	soldiers_motion();
-	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, GRID[4][4].Castle_x, GRID[4][4].Castle_y, GRID[5][5].Castle_ptr->Player);
+//	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, GRID[4][4].Castle_x, GRID[4][4].Castle_y, GRID[5][5].Castle_ptr->Player);
 	deploy_all();
 	show_soldiers(renderer);
 }
