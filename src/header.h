@@ -78,6 +78,7 @@ struct CASTLE {
 struct PLAYER {
 	uint32_t Color;
 	int Potion_enabled;
+	int Potion_start;
 	int Soldiers_count;
 };
 

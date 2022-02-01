@@ -45,7 +45,8 @@ void ingame_event(SDL_Event *EVENT) {
 			}
 		}
 		else {
-			schedule_deployment(Chosen->x, Chosen->y, x, y, Players + 2);
+			if (Chosen->x != x || Chosen->y != y)
+				schedule_deployment(Chosen->x, Chosen->y, x, y, Players + 2);
 			Chosen = NULL;
 		}
 	}
