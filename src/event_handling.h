@@ -35,9 +35,9 @@ void ingame_event(SDL_Event *EVENT) {
 			Chosen = NULL;
 			return;
 		}
-		if (CASTLE_PTRS[x][y] == NULL) return;
-		int mx = (GRID[x][y].x1 +GRID[x][y].x2) / 2;
-		int my = (GRID[x][y].y1 +GRID[x][y].y2) / 2;
+		if (CASTLE_PTRS[x][y] == NULL || CASTLE_PTRS[x][y]->Player == Players + 1) return;
+		int mx = (GRID[x][y].x1 + GRID[x][y].x2) / 2;
+		int my = (GRID[x][y].y1 + GRID[x][y].y2) / 2;
 		if (abs(bx - mx) > CASTLE_SIZE / 2 || abs(by - my) > CASTLE_SIZE / 2) return;
 		if (Chosen == NULL) {
 			if (CASTLE_PTRS[x][y]->Player == Players + 2) {

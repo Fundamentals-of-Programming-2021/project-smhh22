@@ -30,7 +30,7 @@ void show_map(SDL_Renderer *renderer) {
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			if (GRID[i][j].Castle_ptr->Player != Players + 1) {
-				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color | (GRID[i][j].Castle_ptr->Soldiers_count * 0x01000000));
+				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, GRID[i][j].Castle_ptr->Player->Color | (min(GRID[i][j].Castle_ptr->Soldiers_count, 255) * 0x01000000));
 			}
 			else {
 				boxColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, 0xffff5000);
@@ -115,6 +115,7 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 
 void show_sample(SDL_Renderer *renderer) {
 	show_background(renderer);
+	product_soldiers();
 	show_map(renderer);
 	show_bar(renderer);
 	show_potion(renderer, 1, 1, "S1");

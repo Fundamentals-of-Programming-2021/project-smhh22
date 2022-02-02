@@ -9,6 +9,7 @@ void add_soldier(float, float, float, float, int, int, int);
 void remove_soldier(DEPLOYED_SOLDIER*);
 void schedule_deployment(int, int, int, int, PLAYER*);
 void deploy_all();
+void product_soldiers();
 
 void soldiers_motion() {
 	DEPLOYED_SOLDIER *cur = HEAD;
@@ -99,6 +100,22 @@ void deploy_all() {
 			CASTLE_PTRS[i][j]->to_be_deployed--;
 			CASTLE_PTRS[i][j]->to_be_deployed = min(CASTLE_PTRS[i][j]->to_be_deployed, CASTLE_PTRS[i][j]->Soldiers_count);
 			CASTLE_PTRS[i][j]->last_deploy = SDL_GetTicks();
+		}
+	}
+}
+
+void product_soldiers() {
+	int time = SDL_GetTicks();
+	if (time - last_production < 1000 / PRODUCTION_RATE) return;
+	last_production = time;
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		for (int j = 0; j < GRID_HEIGHT; j++) {
+			if (CASTLE_PTRS[i][j] == NULL || CASTLE_PTRS[i][j]->Player == Players + 1) continue;
+			if (CASTLE_PTRS[i][j]->Soldiers_count < MAX_PRODUCTIVE_SOLDIERS) {
+				CASTLE_PTRS[i][j]->Soldiers_count++;
+				CASTLE_PTRS[i][j]->Player->Soldiers_count++;
+				TOTAL_SOLDIERS_COUNT++;
+			}
 		}
 	}
 }

@@ -7,15 +7,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
-#define min(x, y) x < y ? x : y
-#define max(x, y) x > y ? x : y
+#define min(x, y) ((x) < (y) ? (x) : (y))
+#define max(x, y) ((x) > (y) ? (x) : (y))
 
 //UP RIGHT DOWN LEFT
 const int DELTA_X[4] = {0, +1, 0, -1};
 const int DELTA_Y[4] = {-1, 0, +1, 0};
 
-const float SOLDIERS_SPEED = 3;
-const float DEPLOYMENT_RATE = 10;
+const float SOLDIERS_SPEED = 6;
+const float DEPLOYMENT_RATE = 20;
+const float PRODUCTION_RATE = 5;
 
 int SCREEN_WIDTH;
 int SCREEN_HEIGHT;
@@ -42,6 +43,8 @@ const int SOLDIER_SIZE = 5;
 
 const int NEUTRAL_INITIAL_SOLDIERS = 100;
 const int INITIAL_SOLDIERS = 125;
+
+const int MAX_PRODUCTIVE_SOLDIERS = 120;
 
 int TOTAL_SOLDIERS_COUNT;
 
@@ -109,3 +112,5 @@ DEPLOYED_SOLDIER *HEAD = NULL;
 Game_mode MODE;
 
 CASTLE* Chosen = NULL;
+
+int last_production = 0;
