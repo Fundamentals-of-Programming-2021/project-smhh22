@@ -37,19 +37,19 @@ void show_map(SDL_Renderer *renderer) {
 			}
 
 			if (GRID[i][j].Border_shown[0]) {
-				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y1, BORDER_THICKNESS, 0xff000000);
+				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y1, BORDER_THICKNESS, 0xff111133);
 			}
 
 			if (GRID[i][j].Border_shown[1]) {
-				thickLineColor(renderer, GRID[i][j].x2, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, BORDER_THICKNESS, 0xff000000);
+				thickLineColor(renderer, GRID[i][j].x2, GRID[i][j].y1, GRID[i][j].x2, GRID[i][j].y2, BORDER_THICKNESS, 0xff111133);
 			}
 
 			if (GRID[i][j].Border_shown[2]) {
-				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y2, GRID[i][j].x2, GRID[i][j].y2, BORDER_THICKNESS, 0xff000000);
+				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y2, GRID[i][j].x2, GRID[i][j].y2, BORDER_THICKNESS, 0xff111133);
 			}
 
 			if (GRID[i][j].Border_shown[3]) {
-				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x1, GRID[i][j].y2, BORDER_THICKNESS, 0xff000000);
+				thickLineColor(renderer, GRID[i][j].x1, GRID[i][j].y1, GRID[i][j].x1, GRID[i][j].y2, BORDER_THICKNESS, 0xff111133);
 			}
 			
 			if (CASTLE_PTRS[i][j] != NULL && CASTLE_PTRS[i][j]->Player != Players + 1) {
@@ -123,5 +123,6 @@ void show_sample(SDL_Renderer *renderer) {
 	soldiers_motion();
 //	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, GRID[4][4].Castle_x, GRID[4][4].Castle_y, GRID[5][5].Castle_ptr->Player);
 	deploy_all();
+	collision_check();
 	show_soldiers(renderer);
 }

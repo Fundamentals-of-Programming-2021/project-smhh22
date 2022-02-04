@@ -10,6 +10,7 @@ void remove_soldier(DEPLOYED_SOLDIER*);
 void schedule_deployment(int, int, int, int, PLAYER*);
 void deploy_all();
 void product_soldiers();
+void collision_check();
 
 void soldiers_motion() {
 	DEPLOYED_SOLDIER *cur = HEAD;
@@ -23,7 +24,7 @@ void soldiers_motion() {
 			if (cur->Dest->Player == cur->Player) {
 				cur->Dest->Soldiers_count++;
 			}
-			else if (!cur->Dest->Soldiers_count) {
+			else if (cur->Dest->Soldiers_count <= 0) {
 				cur->Dest->Soldiers_count++;
 				cur->Dest->Player = cur->Player;
 			}
@@ -56,6 +57,7 @@ void add_soldier(float x, float y, float vx, float vy, int p, int dx, int dy) {
 }
 
 void remove_soldier(DEPLOYED_SOLDIER *cur) {
+
 	if (cur == NULL) return;
 	if (cur->prv != NULL)
 		cur->prv->nxt = cur->nxt;
@@ -78,7 +80,7 @@ void deploy_all() {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			if (CASTLE_PTRS[i][j] == NULL)
 				continue;
-			if (!CASTLE_PTRS[i][j]->to_be_deployed)
+			if (CASTLE_PTRS[i][j]->to_be_deployed <= 0)
 				continue;
 			if (SDL_GetTicks() - CASTLE_PTRS[i][j]->last_deploy < 1000/ DEPLOYMENT_RATE)
 				continue;
@@ -117,5 +119,43 @@ void product_soldiers() {
 				TOTAL_SOLDIERS_COUNT++;
 			}
 		}
+	}
+}
+
+void collision_check() {
+	for (int i = 0; i <= WIDTH; i++) {
+		memset(collision_table[i], 0, sizeof(int) * (HEIGHT + 1));
+	}
+	DEPLOYED_SOLDIER *cur = HEAD;
+	while (cur != NULL) {
+		int x = cur->x;
+		int y = cur->y;
+		for (int i = x - SOLDIER_SIZE; i <= x + SOLDIER_SIZE; i++) {
+			for (int j = y - SOLDIER_SIZE + abs(i - x); j <= y + SOLDIER_SIZE - abs(i - x); j++) {
+				collision_table[i - WINDOW_PADDING_LEFT][j - WINDOW_PADDING_UP] |= 1 << (cur->Player - Players);
+			}
+		}
+		cur = cur->nxt;
+	}
+	cur = HEAD;
+	while (cur != NULL) {
+		int x = cur->x;
+		int y = cur->y;
+		int f = 1 << (cur->Player - Players);
+		for (int i = x - SOLDIER_SIZE; i <= x + SOLDIER_SIZE; i++) {
+			for (int j = y - SOLDIER_SIZE + abs(i - x); j <= y + SOLDIER_SIZE - abs(i - x); j++) {
+				f |= collision_table[i - WINDOW_PADDING_LEFT][j - WINDOW_PADDING_UP];
+				if (f ^ (1 << (cur->Player - Players))) break;
+			}
+			if (f ^ (1 << (cur->Player - Players))) break;
+		}
+		if (f ^ (1 << (cur->Player - Players))) {
+			DEPLOYED_SOLDIER *tmp = cur;
+			tmp->Player->Soldiers_count--;
+			TOTAL_SOLDIERS_COUNT--;
+			cur = cur->nxt;
+			remove_soldier(tmp);
+		}
+		else cur = cur->nxt;
 	}
 }

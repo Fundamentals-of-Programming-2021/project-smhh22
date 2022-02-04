@@ -20,8 +20,8 @@ void event_handling() {
 }
 
 void ingame_event(SDL_Event *EVENT) {
-	if (Chosen != NULL && Chosen->Player != Players + 2)
-		Chosen = NULL;
+//	if (Chosen != NULL && Chosen->Player != Players + 2)
+//		Chosen = NULL;
 	if (EVENT->type == SDL_MOUSEBUTTONDOWN) {
 		int bx = EVENT->button.x;
 		int by = EVENT->button.y;
@@ -40,13 +40,14 @@ void ingame_event(SDL_Event *EVENT) {
 		int my = (GRID[x][y].y1 + GRID[x][y].y2) / 2;
 		if (abs(bx - mx) > CASTLE_SIZE / 2 || abs(by - my) > CASTLE_SIZE / 2) return;
 		if (Chosen == NULL) {
-			if (CASTLE_PTRS[x][y]->Player == Players + 2) {
+//			if (CASTLE_PTRS[x][y]->Player == Players + 2) {
 				Chosen = CASTLE_PTRS[x][y];
-			}
+//			}
 		}
 		else {
 			if (Chosen->x != x || Chosen->y != y)
-				schedule_deployment(Chosen->x, Chosen->y, x, y, Players + 2);
+				schedule_deployment(Chosen->x, Chosen->y, x, y, Chosen->Player);
+			//Players+2
 			Chosen = NULL;
 		}
 	}
