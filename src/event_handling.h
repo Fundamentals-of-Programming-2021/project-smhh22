@@ -6,6 +6,9 @@
 
 void event_handling();
 void ingame_event(SDL_Event*);
+void pause_event(SDL_Event*);
+
+void clean_game();
 
 void event_handling() {
 	SDL_Event EVENT;
@@ -14,6 +17,9 @@ void event_handling() {
 		else {
 			if (MODE == GAME) {
 				ingame_event(&EVENT);
+			}
+			else if (MODE == PAUSE) {
+				pause_event(&EVENT);
 			}
 		}
 	}
@@ -51,4 +57,32 @@ void ingame_event(SDL_Event *EVENT) {
 			Chosen = NULL;
 		}
 	}
+	else if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_PAUSE || EVENT->key.keysym.sym == SDLK_SPACE || EVENT->key.keysym.sym == SDLK_ESCAPE) {
+			MODE = PAUSE;
+		}
+	}
+}
+
+void pause_event(SDL_Event* EVENT) {
+	if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_PAUSE || EVENT->key.keysym.sym == SDLK_SPACE || EVENT->key.keysym.sym == SDLK_ESCAPE) {
+			MODE = GAME;
+		}
+	}
+}
+
+void clean_game() {
+	remove_all_soldiers();
+	free(Players);
+	for (int i = 0; i < GRID_WIDTH; i++) {
+		free(GRID[i]);
+		for (int j = 0; j < GRID_HEIGHT; j++) {
+			if (CASTLE_PTRS[i][j] != NULL)
+				free(CASTLE_PTRS[i][j]);
+		}
+		free(CASTLE_PTRS[i]);
+	}
+	free(GRID);
+	free(CASTLE_PTRS);
 }

@@ -36,7 +36,7 @@ int main() {
 	Define_global_size_variables();
 //	Save_map_to_end();
 
-	show_sample(RENDERER);
+	show(RENDERER);
 
 	SDL_RenderPresent(RENDERER);
 
@@ -54,7 +54,7 @@ int main() {
     	SDL_SetRenderDrawColor(RENDERER, 0xee, 0xdd, 0xdd, 0xff);
     	SDL_RenderClear(RENDERER);
 
-		show_sample(RENDERER);
+		show(RENDERER);
 
     	SDL_RenderPresent(RENDERER);
 
@@ -64,5 +64,5 @@ int main() {
 	SDL_DestroyRenderer(RENDERER);
 	SDL_DestroyWindow(WINDOW);
     SDL_Quit();
-    return 0;
+	clean_game();
 }

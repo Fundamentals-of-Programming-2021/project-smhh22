@@ -7,10 +7,12 @@
 void soldiers_motion();
 void add_soldier(float, float, float, float, int, int, int);
 void remove_soldier(DEPLOYED_SOLDIER*);
+void remove_all_soldiers();
 void schedule_deployment(int, int, int, int, PLAYER*);
 void deploy_all();
 void product_soldiers();
 void collision_check();
+void turn();
 
 void soldiers_motion() {
 	DEPLOYED_SOLDIER *cur = HEAD;
@@ -57,7 +59,6 @@ void add_soldier(float x, float y, float vx, float vy, int p, int dx, int dy) {
 }
 
 void remove_soldier(DEPLOYED_SOLDIER *cur) {
-
 	if (cur == NULL) return;
 	if (cur->prv != NULL)
 		cur->prv->nxt = cur->nxt;
@@ -66,6 +67,15 @@ void remove_soldier(DEPLOYED_SOLDIER *cur) {
 	if (cur->nxt != NULL)
 		cur->nxt->prv = cur->prv;
 	free(cur);
+}
+
+void remove_all_soldiers() {
+	DEPLOYED_SOLDIER *cur = HEAD;
+	while (cur != NULL) {
+		DEPLOYED_SOLDIER *tmp = cur;
+		cur = cur->nxt;
+		remove_soldier(tmp);
+	}
 }
 
 void schedule_deployment(int ox, int oy, int dx, int dy, PLAYER* p) {
@@ -158,4 +168,11 @@ void collision_check() {
 		}
 		else cur = cur->nxt;
 	}
+}
+
+void turn() {
+	product_soldiers();
+	soldiers_motion();
+	deploy_all();
+	collision_check();
 }

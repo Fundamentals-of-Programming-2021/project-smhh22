@@ -14,7 +14,10 @@ void show_soldiers(SDL_Renderer*);
 
 void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
-void show_sample(SDL_Renderer*);
+void show_game(SDL_Renderer*);
+void show_pause(SDL_Renderer*);
+
+void show(SDL_Renderer*);
 
 void show_background(SDL_Renderer* renderer) {
 	for (int i = 1; i <= 10; i++) {
@@ -113,16 +116,29 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 }
 
 
-void show_sample(SDL_Renderer *renderer) {
+void show_game(SDL_Renderer *renderer) {
 	show_background(renderer);
-	product_soldiers();
 	show_map(renderer);
 	show_bar(renderer);
 	show_potion(renderer, 1, 1, "S1");
 //	show_potion(renderer, 2, 2, "C2");
-	soldiers_motion();
 //	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, GRID[4][4].Castle_x, GRID[4][4].Castle_y, GRID[5][5].Castle_ptr->Player);
-	deploy_all();
-	collision_check();
 	show_soldiers(renderer);
+}
+
+void show_pause(SDL_Renderer *renderer) {
+	boxColor(renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x99000000);
+	boxColor(renderer, SCREEN_WIDTH / 2 - 75, SCREEN_HEIGHT / 2 - 100, SCREEN_WIDTH / 2 - 25, SCREEN_HEIGHT / 2 + 100, 0xffffffff);
+	boxColor(renderer, SCREEN_WIDTH / 2 + 25, SCREEN_HEIGHT / 2 - 100, SCREEN_WIDTH / 2 + 75, SCREEN_HEIGHT / 2 + 100, 0xffffffff);
+}
+
+void show(SDL_Renderer *renderer) {
+	if (MODE == GAME) {
+		turn();
+		show_game(renderer);
+	}
+	if (MODE == PAUSE) {
+		show_game(renderer);
+		show_pause(renderer);
+	}
 }
