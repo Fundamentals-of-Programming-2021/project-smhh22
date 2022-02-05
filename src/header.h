@@ -116,3 +116,5 @@ CASTLE* Chosen = NULL;
 int last_production = 0;
 
 int collision_table[1080][720];
+
+const float inf = 2e9;

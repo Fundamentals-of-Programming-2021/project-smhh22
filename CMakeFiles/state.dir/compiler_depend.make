@@ -200,6 +200,7 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/assert.h \
   src/logic.h \
+  src/AI.h \
   src/event_handling.h
 
 
@@ -560,6 +561,8 @@ src/logic.h:
 /usr/lib/gcc/x86_64-linux-gnu/9/include/avxintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/xmmintrin.h:
+
+src/AI.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/smmintrin.h:
 

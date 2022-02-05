@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "header.h"
+#include "AI.h"
 
 void soldiers_motion();
 void add_soldier(float, float, float, float, int, int, int);
@@ -173,6 +173,7 @@ void collision_check() {
 void turn() {
 	product_soldiers();
 	soldiers_motion();
+	do_ai();
 	deploy_all();
 	collision_check();
 }

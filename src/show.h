@@ -82,11 +82,11 @@ void show_bar(SDL_Renderer *renderer) {
 
 	double sum = 0;
 	for (int i = 2; i < NUMBER_OF_PLAYERS; i++) {
-		if (!Players[i].Soldiers_count) continue;
+		if (Players[i].Soldiers_count <= 0) continue;
 		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
 		sum += Players[i].Soldiers_count;
 	}
-	if (!Players[0].Soldiers_count) return;
+	if (Players[0].Soldiers_count <= 0) return;
 	thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[0].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[0].Color | 0xff000000);
 }
 
@@ -113,6 +113,7 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 	short X[4] = {x - r, x, x + r, x};
 	short Y[4] = {y, y + r, y, y - r};
 	filledPolygonColor(renderer, X, Y, 4, Color);
+	polygonColor(renderer, X, Y, 4, Color ^ 0x00ffffff);
 }
 
 
