@@ -20,6 +20,7 @@ void show_game(SDL_Renderer*);
 void show_pause(SDL_Renderer*);
 void show_start(SDL_Renderer*);
 void show_menu(SDL_Renderer*);
+void show_leaderboard(SDL_Renderer*);
 
 void show(SDL_Renderer*);
 
@@ -179,9 +180,47 @@ void show_menu(SDL_Renderer *renderer) {
 	char prefix[2];
 	prefix[0] = prefix[1] = '\0';
 	if ((SDL_GetTicks() / 500) % 2) prefix[0] = '|';
-	sprintf(str, "> Press (Q) to exit, (S) to logout, (L) to see leaderboard and (G) to start a new game.%s", prefix);
+	sprintf(str, "> Press (Q) to quit, (S) to logout, (L) to see the leaderboard and (G) to start a new game.%s", prefix);
 	print_to_game_terminal(renderer, str, 5);
 }
+
+void show_leaderboard(SDL_Renderer *renderer) {
+	int cnt = 0;
+	char str[110];
+	FILE *file = fopen("users/users", "r");
+	while (!feof(file)) {
+		fgets(str, 105, file);
+		cnt++;
+	}
+	cnt--;
+	fclose(file);
+	file = fopen("users/users", "r");
+	char strs[cnt + 1][110];
+	int a[cnt + 1];
+	for (int i = 0; i < cnt; i++) {
+		a[i] = i;
+		fgets(strs[i], 105, file);
+		strs[i][strlen(strs[i]) - 1] = '\0';
+	}
+	user_sort(strs, a, cnt);
+	for (int i = 0; i < min(10, cnt); i++) {
+		sprintf(str, ">   %-70s   %10d", strs[a[i]], read_specific_user(strs[a[i]]));
+		print_to_game_terminal(renderer, str, i);
+	}
+	if (cnt <= 10)
+		print_to_game_terminal(renderer, ">", min(10, cnt));
+	else
+		print_to_game_terminal(renderer, ">   ...", min(10, cnt));
+	for (int i = min(10, cnt) + 1; i < 15; i++) {
+		print_to_game_terminal(renderer, ">", i);
+	}
+	char prefix[2];
+	prefix[0] = prefix[1] = '\0';
+	if ((SDL_GetTicks() / 500) % 2) prefix[0] = '|';
+	sprintf(str, "> Press (B) to return to the main menu.%s", prefix);
+	print_to_game_terminal(renderer, str, 15);
+}
+
 
 void show(SDL_Renderer *renderer) {
 	SDL_SetRenderDrawColor(renderer, 0x88, 0x77, 0x77, 0xff);
@@ -199,5 +238,8 @@ void show(SDL_Renderer *renderer) {
 	}
 	else if (MODE == MENU) {
 		show_menu(renderer);
+	}
+	else if (MODE == LEADERBOARD) {
+		show_leaderboard(renderer);
 	}
 }

@@ -111,7 +111,7 @@ SDL_Renderer* RENDERER;
 
 DEPLOYED_SOLDIER *HEAD = NULL;
 
-Game_mode MODE = START;
+Game_mode MODE = LEADERBOARD;
 Game_state STATE = NA;
 
 CASTLE* Chosen = NULL;

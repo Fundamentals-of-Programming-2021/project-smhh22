@@ -9,6 +9,7 @@ void ingame_event(SDL_Event*);
 void pause_event(SDL_Event*);
 void start_event(SDL_Event*);
 void menu_event(SDL_Event*);
+void leaderboard_event(SDL_Event*);
 
 void clean_game();
 
@@ -28,6 +29,9 @@ void event_handling() {
 			}
 			else if (MODE == MENU) {
 				menu_event(&EVENT);
+			}
+			else if (MODE == LEADERBOARD) {
+				leaderboard_event(&EVENT);
 			}
 		}
 	}
@@ -92,6 +96,7 @@ void start_event(SDL_Event *EVENT) {
 		else if (EVENT->key.keysym.sym == SDLK_RETURN || EVENT->key.keysym.sym == SDLK_KP_ENTER) {
 			SDL_StopTextInput();
 			read_user();
+			save_user();
 			MODE = MENU;
 		}
 	}
@@ -114,6 +119,14 @@ void menu_event(SDL_Event *EVENT) {
 		else if (EVENT->key.keysym.sym == SDLK_g) {
 			shown_map = 0;
 			MODE = CHOOSEMAP;
+		}
+	}
+}
+
+void leaderboard_event(SDL_Event *EVENT) {
+	if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_b) {
+			MODE = MENU;
 		}
 	}
 }
