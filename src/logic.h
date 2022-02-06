@@ -3,6 +3,7 @@
 #pragma once
 
 #include "AI.h"
+#include "users.h"
 
 void soldiers_motion();
 void add_soldier(float, float, float, float, int, int, int);

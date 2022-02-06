@@ -193,6 +193,7 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/SDL2/SDL_version.h \
   /usr/include/SDL2/SDL2_gfxPrimitives.h \
   /usr/include/SDL2/SDL.h \
+  /usr/include/SDL2/SDL_ttf.h \
   src/random_map.h \
   /usr/include/time.h \
   /usr/include/x86_64-linux-gnu/bits/time.h \
@@ -201,6 +202,7 @@ CMakeFiles/state.dir/src/main.c.o: src/main.c \
   /usr/include/assert.h \
   src/logic.h \
   src/AI.h \
+  src/users.h \
   src/event_handling.h
 
 
@@ -213,6 +215,8 @@ src/event_handling.h:
 /usr/include/time.h:
 
 src/random_map.h:
+
+/usr/include/SDL2/SDL_ttf.h:
 
 /usr/include/SDL2/SDL_timer.h:
 
@@ -449,6 +453,8 @@ src/main.c:
 /usr/include/endian.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/mmintrin.h:
+
+src/users.h:
 
 /usr/include/math.h:
 

@@ -157,10 +157,12 @@ CMakeFiles/state.dir/src/main.c.o: \
  /usr/include/SDL2/SDL_shape.h /usr/include/SDL2/SDL_system.h \
  /usr/include/SDL2/SDL_timer.h /usr/include/SDL2/SDL_version.h \
  /usr/include/SDL2/SDL2_gfxPrimitives.h /usr/include/SDL2/SDL.h \
+ /usr/include/SDL2/SDL_ttf.h \
  /home/a/Desktop/Sharif/1/Proj/state.io/src/random_map.h \
  /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/assert.h /home/a/Desktop/Sharif/1/Proj/state.io/src/logic.h \
  /home/a/Desktop/Sharif/1/Proj/state.io/src/AI.h \
+ /home/a/Desktop/Sharif/1/Proj/state.io/src/users.h \
  /home/a/Desktop/Sharif/1/Proj/state.io/src/event_handling.h

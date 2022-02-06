@@ -9,10 +9,13 @@ void Define_global_size_variables();
 
 void init () {
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+	TTF_Init();
+	proFontWindows = TTF_OpenFont("fonts/ProFontWindows/ProFontWindows.ttf", 24);
 	WINDOW = SDL_CreateWindow("State.io", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
 	RENDERER = SDL_CreateRenderer(WINDOW, -1, SDL_RENDERER_ACCELERATED);
 	SDL_SetRenderDrawColor(RENDERER, 0xee, 0xdd, 0xcc, 0xff);
 	SDL_RenderClear(RENDERER);
+	SDL_StartTextInput();
 }
 
 void Define_global_size_variables() {

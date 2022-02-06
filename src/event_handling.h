@@ -7,6 +7,8 @@
 void event_handling();
 void ingame_event(SDL_Event*);
 void pause_event(SDL_Event*);
+void start_event(SDL_Event*);
+void menu_event(SDL_Event*);
 
 void clean_game();
 
@@ -20,6 +22,12 @@ void event_handling() {
 			}
 			else if (MODE == PAUSE) {
 				pause_event(&EVENT);
+			}
+			else if (MODE == START) {
+				start_event(&EVENT);
+			}
+			else if (MODE == MENU) {
+				menu_event(&EVENT);
 			}
 		}
 	}
@@ -63,10 +71,49 @@ void ingame_event(SDL_Event *EVENT) {
 	}
 }
 
-void pause_event(SDL_Event* EVENT) {
+void pause_event(SDL_Event *EVENT) {
 	if (EVENT->type == SDL_KEYDOWN) {
 		if (EVENT->key.keysym.sym == SDLK_PAUSE || EVENT->key.keysym.sym == SDLK_SPACE || EVENT->key.keysym.sym == SDLK_ESCAPE) {
 			MODE = GAME;
+		}
+	}
+}
+
+void start_event(SDL_Event *EVENT) {
+	if (EVENT->type == SDL_TEXTINPUT) {
+		strcat(username, EVENT->text.text);
+	}
+	else if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_BACKSPACE) {
+			if (strlen(username)) {
+				username[strlen(username) - 1] = '\0';
+			}
+		}
+		else if (EVENT->key.keysym.sym == SDLK_RETURN || EVENT->key.keysym.sym == SDLK_KP_ENTER) {
+			SDL_StopTextInput();
+			read_user();
+			MODE = MENU;
+		}
+	}
+}
+
+void menu_event(SDL_Event *EVENT) {
+	if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_q) {
+			MODE = EXIT;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_s) {
+			memset(username, 0, sizeof(username));
+			score = 0;
+			SDL_StartTextInput();
+			MODE = START;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_l) {
+			MODE = LEADERBOARD;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_g) {
+			shown_map = 0;
+			MODE = CHOOSEMAP;
 		}
 	}
 }

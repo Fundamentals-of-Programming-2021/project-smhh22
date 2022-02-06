@@ -6,6 +6,7 @@
 #include <math.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
+#include <SDL2/SDL_ttf.h>
 
 #define min(x, y) ((x) < (y) ? (x) : (y))
 #define max(x, y) ((x) > (y) ? (x) : (y))
@@ -52,7 +53,8 @@ int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player
 
 const double FPS = 30;
 
-typedef enum Game_mode {GAME, PAUSE, EXIT} Game_mode;
+typedef enum Game_mode {START, MENU, LEADERBOARD, CHOOSEMAP, GAME, PAUSE, EXIT} Game_mode;
+typedef enum Game_state {NA, WIN, LOSE} Game_state;
 typedef struct CASTLE CASTLE;
 typedef struct CELL CELL;
 typedef struct PLAYER PLAYER;
@@ -109,7 +111,8 @@ SDL_Renderer* RENDERER;
 
 DEPLOYED_SOLDIER *HEAD = NULL;
 
-Game_mode MODE = GAME;
+Game_mode MODE = START;
+Game_state STATE = NA;
 
 CASTLE* Chosen = NULL;
 
@@ -118,3 +121,10 @@ int last_production = 0;
 int collision_table[1080][720];
 
 const float inf = 2e9;
+
+char username[100];
+int score;
+
+TTF_Font *proFontWindows;
+
+int shown_map = 0;

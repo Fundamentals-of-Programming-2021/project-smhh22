@@ -14,8 +14,12 @@ void show_soldiers(SDL_Renderer*);
 
 void diamondColor(SDL_Renderer*, int, int, int, uint32_t);
 
+void print_to_game_terminal(SDL_Renderer*, char*, int);
+
 void show_game(SDL_Renderer*);
 void show_pause(SDL_Renderer*);
+void show_start(SDL_Renderer*);
+void show_menu(SDL_Renderer*);
 
 void show(SDL_Renderer*);
 
@@ -82,8 +86,8 @@ void show_bar(SDL_Renderer *renderer) {
 
 	double sum = 0;
 	for (int i = 2; i < NUMBER_OF_PLAYERS; i++) {
-		if (Players[i].Soldiers_count <= 0) continue;
-		thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
+		if (Players[i].Soldiers_count > 0)
+			thickLineColor(renderer, WINDOW_PADDING_LEFT + (int)(sum / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, WINDOW_PADDING_LEFT + (int)((sum + Players[i].Soldiers_count) / TOTAL_SOLDIERS_COUNT * WIDTH), 20 + WINDOW_PADDING_UP / 2, BAR_THICKNESS, Players[i].Color | 0xff000000);
 		sum += Players[i].Soldiers_count;
 	}
 	if (Players[0].Soldiers_count <= 0) return;
@@ -117,6 +121,17 @@ void diamondColor(SDL_Renderer *renderer, int x, int y, int r, uint32_t Color) {
 }
 
 
+void print_to_game_terminal(SDL_Renderer *renderer, char *str, int row) {
+	SDL_Color Color = {0x44, 0xdd, 0x66};
+	SDL_Surface *Text = TTF_RenderText_Solid(proFontWindows, str, Color);
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, Text);
+	SDL_Rect TextBox = {WINDOW_PADDING_LEFT, WINDOW_PADDING_UP + row * Text->h, Text->w, Text->h};
+	SDL_RenderCopy(renderer, texture, NULL, &TextBox);
+	SDL_FreeSurface(Text);
+	SDL_DestroyTexture(texture);
+}
+
+
 void show_game(SDL_Renderer *renderer) {
 	show_background(renderer);
 	show_map(renderer);
@@ -133,13 +148,56 @@ void show_pause(SDL_Renderer *renderer) {
 	boxColor(renderer, SCREEN_WIDTH / 2 + 25, SCREEN_HEIGHT / 2 - 100, SCREEN_WIDTH / 2 + 75, SCREEN_HEIGHT / 2 + 100, 0xffffffff);
 }
 
+void show_start(SDL_Renderer *renderer) {
+	char str[150];
+	char prefix[2];
+	prefix[0] = prefix[1] = '\0';
+	if ((SDL_GetTicks() / 500) % 2) prefix[0] = '|';
+	sprintf(str, "> Enter your name:");
+	print_to_game_terminal(renderer, str, 0);
+	sprintf(str, "> %s%s", username, prefix);
+	print_to_game_terminal(renderer, str, 1);
+}
+
+void show_menu(SDL_Renderer *renderer) {
+	char str[200];
+	sprintf(str, "> HEllo, %s!", username);
+	print_to_game_terminal(renderer, str, 0);
+	if (STATE == NA) {
+		print_to_game_terminal(renderer, "> Welcome to the game!", 1);
+	}
+	else if (STATE == WIN) {
+		print_to_game_terminal(renderer, "> Well done, Congratulations!", 1);
+	}
+	else {
+		print_to_game_terminal(renderer, "> Game over!", 1);
+	}
+	print_to_game_terminal(renderer, ">", 2);
+	sprintf(str, "> Your current score is: %d", score);
+	print_to_game_terminal(renderer, str, 3);
+	print_to_game_terminal(renderer, ">", 4);
+	char prefix[2];
+	prefix[0] = prefix[1] = '\0';
+	if ((SDL_GetTicks() / 500) % 2) prefix[0] = '|';
+	sprintf(str, "> Press (Q) to exit, (S) to logout, (L) to see leaderboard and (G) to start a new game.%s", prefix);
+	print_to_game_terminal(renderer, str, 5);
+}
+
 void show(SDL_Renderer *renderer) {
+	SDL_SetRenderDrawColor(renderer, 0x88, 0x77, 0x77, 0xff);
+	SDL_RenderClear(renderer);
 	if (MODE == GAME) {
 		turn();
 		show_game(renderer);
 	}
-	if (MODE == PAUSE) {
+	else if (MODE == PAUSE) {
 		show_game(renderer);
 		show_pause(renderer);
+	}
+	else if (MODE == START) {
+		show_start(renderer);
+	}
+	else if (MODE == MENU) {
+		show_menu(renderer);
 	}
 }
