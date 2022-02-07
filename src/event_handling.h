@@ -125,6 +125,7 @@ void menu_event(SDL_Event *EVENT) {
 			score = 0;
 			SDL_StartTextInput();
 			MODE = START;
+			STATE = NA;
 		}
 		else if (EVENT->key.keysym.sym == SDLK_l) {
 			init_leaderboard();

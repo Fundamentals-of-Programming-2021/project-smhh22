@@ -50,7 +50,7 @@ int read_specific_user(char *str) {
 void user_sort(char** strs, int* a, int cnt) {
 	for (int t = 0; t < cnt; t++) {
 		for (int i = t; i < cnt - 1; i++) {
-			if (read_specific_user(strs[a[i]]) > read_specific_user(strs[a[i + 1]])) {
+			if (read_specific_user(strs[a[i]]) < read_specific_user(strs[a[i + 1]])) {
 				a[cnt] = a[i];
 				a[i] = a[i + 1];
 				a[i + 1] = a[cnt];

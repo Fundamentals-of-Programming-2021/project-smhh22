@@ -4,6 +4,7 @@
 
 #include "AI.h"
 #include "users.h"
+#include "event_handling.h"
 
 int map_score();
 void soldiers_motion();
@@ -14,6 +15,7 @@ void schedule_deployment(int, int, int, int, PLAYER*);
 void deploy_all();
 void product_soldiers();
 void collision_check();
+void check_wl();
 void turn();
 
 int map_score() {
@@ -96,6 +98,7 @@ void deploy_all() {
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			if (CASTLE_PTRS[i][j] == NULL)
 				continue;
+			CASTLE_PTRS[i][j]->to_be_deployed = min(CASTLE_PTRS[i][j]->to_be_deployed, CASTLE_PTRS[i][j]->Soldiers_count);
 			if (CASTLE_PTRS[i][j]->to_be_deployed <= 0)
 				continue;
 			if (SDL_GetTicks() - CASTLE_PTRS[i][j]->last_deploy < 1000/ DEPLOYMENT_RATE)
@@ -173,6 +176,24 @@ void collision_check() {
 			remove_soldier(tmp);
 		}
 		else cur = cur->nxt;
+	}
+}
+
+void check_wl() {
+//	printf("%d\n", Players[2].Soldiers_count);
+	if (Players[2].Soldiers_count <= 0) {
+		STATE = LOSE;
+		score -= map_score();
+		clean_game();
+		MODE = MENU;
+		save_user();
+	}
+	else if (Players[2].Soldiers_count + Players[0].Soldiers_count == TOTAL_SOLDIERS_COUNT) {
+		score += 2 * map_score();
+		STATE = WIN;
+		clean_game();
+		MODE = MENU;
+		save_user();
 	}
 }
 

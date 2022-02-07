@@ -244,6 +244,7 @@ void show(SDL_Renderer *renderer) {
 	if (MODE == GAME) {
 		turn();
 		show_game(renderer);
+		check_wl();
 	}
 	else if (MODE == PAUSE) {
 		show_game(renderer);
