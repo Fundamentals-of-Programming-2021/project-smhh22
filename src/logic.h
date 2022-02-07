@@ -5,6 +5,7 @@
 #include "AI.h"
 #include "users.h"
 
+int map_score();
 void soldiers_motion();
 void add_soldier(float, float, float, float, int, int, int);
 void remove_soldier(DEPLOYED_SOLDIER*);
@@ -14,6 +15,10 @@ void deploy_all();
 void product_soldiers();
 void collision_check();
 void turn();
+
+int map_score() {
+	return NUMBER_OF_PLAYERS * NUMBER_OF_PLAYERS * 100 + GRID_WIDTH * GRID_HEIGHT;
+}
 
 void soldiers_motion() {
 	DEPLOYED_SOLDIER *cur = HEAD;

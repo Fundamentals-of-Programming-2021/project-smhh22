@@ -21,6 +21,8 @@ void show_pause(SDL_Renderer*);
 void show_start(SDL_Renderer*);
 void show_menu(SDL_Renderer*);
 void show_leaderboard(SDL_Renderer*);
+void show_choosemap(SDL_Renderer*);
+void show_randommap(SDL_Renderer*);
 
 void show(SDL_Renderer*);
 
@@ -207,6 +209,34 @@ void show_leaderboard(SDL_Renderer *renderer) {
 	print_to_game_terminal(renderer, str, 15);
 }
 
+void show_choosemap(SDL_Renderer* renderer) {
+	show_background(renderer);
+	show_map(renderer);
+	print_to_game_terminal(renderer, "> Press (B) to return to the main menu, or use arrow keys to transform between maps.", -3);
+	print_to_game_terminal(renderer, "> Press (G) to start the game. Press one number key between 1 to 5 as number of opponents", -2);
+	print_to_game_terminal(renderer, "  to make a random map, or press 0 for the number being random.", -1);
+	char str[50];
+	sprintf(str, "> You'll gain %d scores for win, %d for lose.", map_score() * 2, -map_score());
+	print_to_game_terminal(renderer, str, -4);
+	sprintf(str, "> Map number: %d", shown_map + 1);
+	print_to_game_terminal(renderer, str, -5);
+}
+
+void show_randommap(SDL_Renderer* renderer) {
+	show_background(renderer);
+	show_map(renderer);
+	print_to_game_terminal(renderer, "> Press (B) to return to the main menu, (G) to start the game, or one number key between", -2);
+	print_to_game_terminal(renderer, "  0 to 5 to make another random map", -1);
+	if (hasbeensaved) {
+		print_to_game_terminal(renderer, "> The map has been saved.", -3);
+	}
+	else {
+		print_to_game_terminal(renderer, "> Press (S) to save the map", -3);
+	}
+	char str[50];
+	sprintf(str, "> You'll gain %d scores for win, %d for lose.", map_score() * 2, -map_score());
+	print_to_game_terminal(renderer, str, -4);
+}
 
 void show(SDL_Renderer *renderer) {
 	SDL_SetRenderDrawColor(renderer, 0x88, 0x77, 0x77, 0xff);
@@ -227,5 +257,11 @@ void show(SDL_Renderer *renderer) {
 	}
 	else if (MODE == LEADERBOARD) {
 		show_leaderboard(renderer);
+	}
+	else if (MODE == CHOOSEMAP) {
+		show_choosemap(renderer);
+	}
+	else if (MODE == RANDOMMAP) {
+		show_randommap(renderer);
 	}
 }

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "logic.h"
+#include "init.h"
 
 void event_handling();
 void ingame_event(SDL_Event*);
@@ -10,6 +11,8 @@ void pause_event(SDL_Event*);
 void start_event(SDL_Event*);
 void menu_event(SDL_Event*);
 void leaderboard_event(SDL_Event*);
+void choosemap_event(SDL_Event*);
+void randommap_event(SDL_Event*);
 
 void init_leaderboard();
 void finish_leaderboard();
@@ -35,6 +38,12 @@ void event_handling() {
 			}
 			else if (MODE == LEADERBOARD) {
 				leaderboard_event(&EVENT);
+			}
+			else if (MODE == CHOOSEMAP) {
+				choosemap_event(&EVENT);
+			}
+			else if (MODE == RANDOMMAP) {
+				randommap_event(&EVENT);
 			}
 		}
 	}
@@ -123,6 +132,8 @@ void menu_event(SDL_Event *EVENT) {
 		}
 		else if (EVENT->key.keysym.sym == SDLK_g) {
 			shown_map = 0;
+			Read_map("maps/map0.txt");
+			Define_global_size_variables();
 			MODE = CHOOSEMAP;
 		}
 	}
@@ -133,6 +144,125 @@ void leaderboard_event(SDL_Event *EVENT) {
 		if (EVENT->key.keysym.sym == SDLK_b) {
 			finish_leaderboard();
 			MODE = MENU;
+		}
+	}
+}
+
+void choosemap_event(SDL_Event *EVENT) {
+	if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_b) {
+			clean_game();
+			MODE = MENU;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_RIGHT) {
+			if (shown_map == read_map_cnt() - 1) return;
+			clean_game();
+			shown_map++;
+			char str[16];
+			sprintf(str, "maps/map%d.txt", shown_map);
+			Read_map(str);
+			Define_global_size_variables();
+		}
+		else if (EVENT->key.keysym.sym == SDLK_LEFT) {
+			if (shown_map == 0) return;
+			clean_game();
+			shown_map--;
+			char str[16];
+			sprintf(str, "maps/map%d.txt", shown_map);
+			Read_map(str);
+			Define_global_size_variables();
+		}
+		else if (EVENT->key.keysym.sym == SDLK_g) {
+			MODE = GAME;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_0 || EVENT->key.keysym.sym == SDLK_KP_0) {
+			clean_game();
+			make_random_map(-1);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_1 || EVENT->key.keysym.sym == SDLK_KP_1) {
+			clean_game();
+			make_random_map(1);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_2 || EVENT->key.keysym.sym == SDLK_KP_2) {
+			clean_game();
+			make_random_map(2);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_3 || EVENT->key.keysym.sym == SDLK_KP_3) {
+			clean_game();
+			make_random_map(3);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_4 || EVENT->key.keysym.sym == SDLK_KP_4) {
+			clean_game();
+			make_random_map(4);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_5 || EVENT->key.keysym.sym == SDLK_KP_5) {
+			clean_game();
+			make_random_map(5);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+	}
+}
+
+void randommap_event(SDL_Event *EVENT) {
+	if (EVENT->type == SDL_KEYDOWN) {
+		if (EVENT->key.keysym.sym == SDLK_b) {
+			clean_game();
+			MODE = MENU;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_g) {
+			MODE = GAME;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_s) {
+			if (hasbeensaved) return;
+			Save_map_to_end();
+			hasbeensaved = 1;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_0 || EVENT->key.keysym.sym == SDLK_KP_0) {
+			clean_game();
+			make_random_map(-1);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_1 || EVENT->key.keysym.sym == SDLK_KP_1) {
+			clean_game();
+			make_random_map(1);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_2 || EVENT->key.keysym.sym == SDLK_KP_2) {
+			clean_game();
+			make_random_map(2);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_3 || EVENT->key.keysym.sym == SDLK_KP_3) {
+			clean_game();
+			make_random_map(3);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_4 || EVENT->key.keysym.sym == SDLK_KP_4) {
+			clean_game();
+			make_random_map(4);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
+		}
+		else if (EVENT->key.keysym.sym == SDLK_5 || EVENT->key.keysym.sym == SDLK_KP_5) {
+			clean_game();
+			make_random_map(5);
+			Define_global_size_variables();
+			MODE = RANDOMMAP;
 		}
 	}
 }
@@ -180,9 +310,10 @@ void finish_leaderboard() {
 
 
 void clean_game() {
-	finish_leaderboard();
 	remove_all_soldiers();
-	free(Players);
+	if (Players != NULL)
+		free(Players);
+	Players = NULL;
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		free(GRID[i]);
 		for (int j = 0; j < GRID_HEIGHT; j++) {
@@ -191,6 +322,14 @@ void clean_game() {
 		}
 		free(CASTLE_PTRS[i]);
 	}
-	free(GRID);
-	free(CASTLE_PTRS);
+	GRID_WIDTH = 0;
+	GRID_HEIGHT = 0;
+	if (GRID != NULL)
+		free(GRID);
+	GRID = NULL;
+	if (CASTLE_PTRS != NULL)
+		free(CASTLE_PTRS);
+	CASTLE_PTRS = NULL;
+	TOTAL_SOLDIERS_COUNT = 0;
+	hasbeensaved = 0;
 }

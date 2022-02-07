@@ -53,7 +53,7 @@ int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player
 
 double FPS = 30;
 
-typedef enum Game_mode {START, MENU, LEADERBOARD, CHOOSEMAP, GAME, PAUSE, EXIT} Game_mode;
+typedef enum Game_mode {START, MENU, LEADERBOARD, CHOOSEMAP, RANDOMMAP, GAME, PAUSE, EXIT} Game_mode;
 typedef enum Game_state {NA, WIN, LOSE} Game_state;
 typedef struct CASTLE CASTLE;
 typedef struct CELL CELL;
@@ -132,3 +132,5 @@ int shown_map = 0;
 char** LEADERBOARDSTRS;
 int* LEADERBOARDA;
 int LEADERBOARDCNT;
+
+int hasbeensaved = 0;

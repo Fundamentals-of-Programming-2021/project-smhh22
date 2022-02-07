@@ -11,8 +11,8 @@ int main() {
 
 	init();
 
-	make_random_map(-1);
-	Define_global_size_variables();
+//	make_random_map(-1);
+//	Define_global_size_variables();
 //	Save_map_to_end();
 
 	show(RENDERER);
@@ -36,8 +36,11 @@ int main() {
         while (SDL_GetTicks() - start_ticks < 1000 / FPS);
     }
 
+	TTF_CloseFont(proFontWindows);
+	TTF_Quit();
 	SDL_DestroyRenderer(RENDERER);
 	SDL_DestroyWindow(WINDOW);
     SDL_Quit();
+	finish_leaderboard();
 	clean_game();
 }
