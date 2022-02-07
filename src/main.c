@@ -23,7 +23,6 @@ int main() {
 //	SDL_HideWindow(window);
 
     int begining_of_time = SDL_GetTicks();
-    const double FPS = 60;
     while (1) {
         int start_ticks = SDL_GetTicks();
 

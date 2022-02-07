@@ -51,7 +51,7 @@ int TOTAL_SOLDIERS_COUNT;
 
 int NUMBER_OF_PLAYERS; //NUMBER_OF_OPPONENTS + 3. Player 0: The gray one, Player 1: The sea, Player 2: User.
 
-const double FPS = 30;
+double FPS = 30;
 
 typedef enum Game_mode {START, MENU, LEADERBOARD, CHOOSEMAP, GAME, PAUSE, EXIT} Game_mode;
 typedef enum Game_state {NA, WIN, LOSE} Game_state;
@@ -111,7 +111,7 @@ SDL_Renderer* RENDERER;
 
 DEPLOYED_SOLDIER *HEAD = NULL;
 
-Game_mode MODE = LEADERBOARD;
+Game_mode MODE = START;
 Game_state STATE = NA;
 
 CASTLE* Chosen = NULL;
@@ -128,3 +128,7 @@ int score;
 TTF_Font *proFontWindows;
 
 int shown_map = 0;
+
+char** LEADERBOARDSTRS;
+int* LEADERBOARDA;
+int LEADERBOARDCNT;

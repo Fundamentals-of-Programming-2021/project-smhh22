@@ -162,7 +162,7 @@ void show_start(SDL_Renderer *renderer) {
 
 void show_menu(SDL_Renderer *renderer) {
 	char str[200];
-	sprintf(str, "> HEllo, %s!", username);
+	sprintf(str, "> Hello, %s!", username);
 	print_to_game_terminal(renderer, str, 0);
 	if (STATE == NA) {
 		print_to_game_terminal(renderer, "> Welcome to the game!", 1);
@@ -185,24 +185,10 @@ void show_menu(SDL_Renderer *renderer) {
 }
 
 void show_leaderboard(SDL_Renderer *renderer) {
-	int cnt = 0;
-	char str[110];
-	FILE *file = fopen("users/users", "r");
-	while (!feof(file)) {
-		fgets(str, 105, file);
-		cnt++;
-	}
-	cnt--;
-	fclose(file);
-	file = fopen("users/users", "r");
-	char strs[cnt + 1][110];
-	int a[cnt + 1];
-	for (int i = 0; i < cnt; i++) {
-		a[i] = i;
-		fgets(strs[i], 105, file);
-		strs[i][strlen(strs[i]) - 1] = '\0';
-	}
-	user_sort(strs, a, cnt);
+	int cnt = LEADERBOARDCNT;
+	int* a = LEADERBOARDA;
+	char** strs = LEADERBOARDSTRS;
+	char str[130];
 	for (int i = 0; i < min(10, cnt); i++) {
 		sprintf(str, ">   %-70s   %10d", strs[a[i]], read_specific_user(strs[a[i]]));
 		print_to_game_terminal(renderer, str, i);

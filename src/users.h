@@ -9,7 +9,7 @@ void save_user();
 
 int read_specific_user(char*);
 
-void user_sort(char strs[][110], int a[], int cnt);
+void user_sort(char** strs, int* a, int cnt);
 
 void read_user() {
 	char filename[110];
@@ -47,7 +47,7 @@ int read_specific_user(char *str) {
 }
 
 
-void user_sort(char strs[][110], int a[], int cnt) {
+void user_sort(char** strs, int* a, int cnt) {
 	for (int t = 0; t < cnt; t++) {
 		for (int i = t; i < cnt - 1; i++) {
 			if (read_specific_user(strs[a[i]]) > read_specific_user(strs[a[i + 1]])) {

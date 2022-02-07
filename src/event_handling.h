@@ -11,6 +11,9 @@ void start_event(SDL_Event*);
 void menu_event(SDL_Event*);
 void leaderboard_event(SDL_Event*);
 
+void init_leaderboard();
+void finish_leaderboard();
+
 void clean_game();
 
 void event_handling() {
@@ -94,6 +97,7 @@ void start_event(SDL_Event *EVENT) {
 			}
 		}
 		else if (EVENT->key.keysym.sym == SDLK_RETURN || EVENT->key.keysym.sym == SDLK_KP_ENTER) {
+			if (username[0] == '\0') return;
 			SDL_StopTextInput();
 			read_user();
 			save_user();
@@ -114,6 +118,7 @@ void menu_event(SDL_Event *EVENT) {
 			MODE = START;
 		}
 		else if (EVENT->key.keysym.sym == SDLK_l) {
+			init_leaderboard();
 			MODE = LEADERBOARD;
 		}
 		else if (EVENT->key.keysym.sym == SDLK_g) {
@@ -126,12 +131,56 @@ void menu_event(SDL_Event *EVENT) {
 void leaderboard_event(SDL_Event *EVENT) {
 	if (EVENT->type == SDL_KEYDOWN) {
 		if (EVENT->key.keysym.sym == SDLK_b) {
+			finish_leaderboard();
 			MODE = MENU;
 		}
 	}
 }
 
+
+void init_leaderboard() {
+	int cnt = 0;
+	char str[110];
+	FILE *file = fopen("users/users", "r");
+	while (!feof(file)) {
+		fgets(str, 105, file);
+		cnt++;
+	}
+	cnt--;
+	fclose(file);
+	file = fopen("users/users", "r");
+	char** strs = (char**)malloc(sizeof(char*) * (cnt + 1));
+	for (int i = 0; i <= cnt; i++) {
+		strs[i] = (char*)malloc(sizeof(char) * 110);
+	}
+	int* a = (int*)malloc(sizeof(int) * (cnt + 1));
+	for (int i = 0; i < cnt; i++) {
+		a[i] = i;
+		fgets(strs[i], 105, file);
+		strs[i][strlen(strs[i]) - 1] = '\0';
+	}
+	fclose(file);
+	user_sort(strs, a, cnt);
+	LEADERBOARDSTRS = strs;
+	LEADERBOARDA = a;
+	LEADERBOARDCNT = cnt;
+}
+
+void finish_leaderboard() {
+	if (LEADERBOARDA == NULL) return;
+	free(LEADERBOARDA);
+	for (int i = 0; i <= LEADERBOARDCNT; i++) {
+		free(LEADERBOARDSTRS[i]);
+	}
+	free(LEADERBOARDSTRS);
+	LEADERBOARDCNT = 0;
+	LEADERBOARDA = NULL;
+	LEADERBOARDSTRS = NULL;
+}
+
+
 void clean_game() {
+	finish_leaderboard();
 	remove_all_soldiers();
 	free(Players);
 	for (int i = 0; i < GRID_WIDTH; i++) {
