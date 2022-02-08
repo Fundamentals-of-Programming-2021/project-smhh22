@@ -21,12 +21,17 @@ void make_random_map(int number_of_opponents) {
 	GRID_HEIGHT = (SCREEN_HEIGHT - WINDOW_PADDING_UP - WINDOW_PADDING_DOWN) / CELL_WIDTH;
 
 	Players = (PLAYER*)malloc(sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	Candids = (TUPLE*)malloc(sizeof(TUPLE) * GRID_WIDTH * GRID_HEIGHT);
 	memset(Players, 0, sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	memset(Candids, 0, sizeof(TUPLE) * GRID_WIDTH * GRID_HEIGHT);
 	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
+	isCandid = (int**)malloc(sizeof(int*) * GRID_WIDTH);
 	CASTLE_PTRS = (CASTLE***)malloc(sizeof(CASTLE**) * GRID_WIDTH);
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		GRID[i] = (CELL*)malloc(sizeof(CELL) * GRID_HEIGHT);
+		isCandid[i] = (int*)malloc(sizeof(int) * GRID_HEIGHT);
 		memset(GRID[i], 0, sizeof(CELL) * GRID_HEIGHT);
+		memset(isCandid[i], 0, sizeof(int) * GRID_HEIGHT);
 		CASTLE_PTRS[i] = (CASTLE**)malloc(sizeof(CASTLE*) * GRID_HEIGHT);
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			CASTLE_PTRS[i][j] = NULL;
@@ -43,7 +48,6 @@ void make_random_map(int number_of_opponents) {
 		if (i & (1 << 2))
 			Players[i].Color |= 0x000000ff;
 		Players[i].Potion_enabled = -1;
-		Players[i].Soldiers_count = 0;
 	}
 
 	TUPLE Grid_cells[GRID_WIDTH * GRID_HEIGHT];

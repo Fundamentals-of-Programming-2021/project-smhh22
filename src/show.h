@@ -139,9 +139,9 @@ void show_game(SDL_Renderer *renderer) {
 	show_background(renderer);
 	show_map(renderer);
 	show_bar(renderer);
-	show_potion(renderer, 1, 1, "S1");
-//	show_potion(renderer, 2, 2, "C2");
-//	schedule_deployment(GRID[5][5].Castle_x, GRID[5][5].Castle_y, GRID[4][4].Castle_x, GRID[4][4].Castle_y, GRID[5][5].Castle_ptr->Player);
+	if (~shownpotion) {
+		show_potion(renderer, xpotion, ypotion, potionstrs[shownpotion]);
+	}
 	show_soldiers(renderer);
 }
 

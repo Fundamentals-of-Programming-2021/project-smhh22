@@ -315,8 +315,12 @@ void clean_game() {
 	if (Players != NULL)
 		free(Players);
 	Players = NULL;
+	if (Candids != NULL)
+		free(Candids);
+	Candids = NULL;
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		free(GRID[i]);
+		free(isCandid[i]);
 		for (int j = 0; j < GRID_HEIGHT; j++) {
 			if (CASTLE_PTRS[i][j] != NULL)
 				free(CASTLE_PTRS[i][j]);
@@ -328,9 +332,15 @@ void clean_game() {
 	if (GRID != NULL)
 		free(GRID);
 	GRID = NULL;
+	if (isCandid != NULL)
+		free(isCandid);
+	isCandid = NULL;
 	if (CASTLE_PTRS != NULL)
 		free(CASTLE_PTRS);
 	CASTLE_PTRS = NULL;
 	TOTAL_SOLDIERS_COUNT = 0;
 	hasbeensaved = 0;
+	Candidcnt = 0;
+	enabledpotion = -1;
+	shownpotion = -1;
 }

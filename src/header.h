@@ -76,6 +76,7 @@ struct CASTLE {
 	int Deployment_dest_x;
 	int Deployment_dest_y;
 	int last_deploy;
+	int last_production;
 	PLAYER* Deployer;
 	PLAYER* Player;
 };
@@ -103,8 +104,11 @@ struct TUPLE {
 };
 
 CELL** GRID;
+int** isCandid;
 CASTLE*** CASTLE_PTRS;
 PLAYER* Players;
+TUPLE* Candids;
+int Candidcnt;
 
 SDL_Window* WINDOW;
 SDL_Renderer* RENDERER;
@@ -115,8 +119,6 @@ Game_mode MODE = START;
 Game_state STATE = NA;
 
 CASTLE* Chosen = NULL;
-
-int last_production = 0;
 
 int collision_table[1080][720];
 
@@ -134,3 +136,10 @@ int* LEADERBOARDA;
 int LEADERBOARDCNT;
 
 int hasbeensaved = 0;
+
+const char potionstrs[4][3] = {"S1", "S3", "C1", "C4"};
+const int effectivetime[4] = {20, 5, 10, 5};
+int enabledpotion = -1;
+int shownpotion = -1;
+int xpotion = 0;
+int ypotion = 0;

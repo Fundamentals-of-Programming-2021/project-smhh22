@@ -17,12 +17,17 @@ void Read_map(char *str) {
 	fscanf(Map_file, "%d ", &GRID_HEIGHT);
 
 	Players = (PLAYER*)malloc(sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	Candids = (TUPLE*)malloc(sizeof(TUPLE) * GRID_WIDTH * GRID_HEIGHT);
 	memset(Players, 0, sizeof(PLAYER) * NUMBER_OF_PLAYERS);
+	memset(Candids, 0, sizeof(TUPLE) * GRID_WIDTH * GRID_HEIGHT);
 	GRID = (CELL**)malloc(sizeof(CELL*) * GRID_WIDTH);
+	isCandid = (int**)malloc(sizeof(int*) * GRID_WIDTH);
 	CASTLE_PTRS = (CASTLE***)malloc(sizeof(CASTLE**) * GRID_WIDTH);
 	for (int i = 0; i < GRID_WIDTH; i++) {
 		GRID[i] = (CELL*)malloc(sizeof(CELL) * GRID_HEIGHT);
+		isCandid[i] = (int*)malloc(sizeof(int) * GRID_HEIGHT);
 		memset(GRID[i], 0, sizeof(CELL) * GRID_HEIGHT);
+		memset(isCandid[i], 0, sizeof(int) * GRID_HEIGHT);
 		CASTLE_PTRS[i] = (CASTLE**)malloc(sizeof(CASTLE*) * GRID_HEIGHT);
 		memset(CASTLE_PTRS[i], 0, sizeof(CASTLE*) * GRID_HEIGHT);
 	}
@@ -30,7 +35,6 @@ void Read_map(char *str) {
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
 		fscanf(Map_file, "%x ", &Players[i].Color);
 		Players[i].Potion_enabled = -1;
-		Players[i].Soldiers_count = 0;
 	}
 
 	for (int i = 0; i < GRID_WIDTH; i++) {
