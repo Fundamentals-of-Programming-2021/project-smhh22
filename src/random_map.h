@@ -12,7 +12,6 @@ void random_shuffle_from_end(TUPLE*, int, int, int);
 void swap(TUPLE*, TUPLE*);
 
 void make_random_map(int number_of_opponents) {
-	srand(time(NULL));
 	if (number_of_opponents == -1)
 		number_of_opponents = rand() % 5 + 1;
 	NUMBER_OF_PLAYERS = number_of_opponents + 3;

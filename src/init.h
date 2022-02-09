@@ -8,6 +8,7 @@ void init();
 void Define_global_size_variables();
 
 void init () {
+	srand(time(NULL));
 	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 	TTF_Init();
 	proFontWindows = TTF_OpenFont("fonts/ProFontWindows/ProFontWindows.ttf", 24);

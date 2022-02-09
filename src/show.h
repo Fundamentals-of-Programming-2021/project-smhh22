@@ -67,6 +67,14 @@ void show_map(SDL_Renderer *renderer) {
 				int my = (GRID[i][j].y1 + GRID[i][j].y2) / 2;
 				boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color | 0xff000000);
 
+				if (CASTLE_PTRS[i][j]->Player->Potion_enabled == 2) {
+					boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my - CASTLE_SIZE / 4, 0xffff2200);
+				}
+
+				if (CASTLE_PTRS[i][j]->Player->Potion_enabled == 3) {
+					boxColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my - CASTLE_SIZE / 4, 0xff222222);
+				}
+
 				rectangleColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 
 				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
@@ -111,6 +119,15 @@ void show_soldiers(SDL_Renderer *renderer) {
 	DEPLOYED_SOLDIER *cur = HEAD;
 	while (cur != NULL) {
 		diamondColor(renderer, cur->x, cur->y, SOLDIER_SIZE, cur->Player->Color | 0xff000000);
+
+		if (cur->Player->Potion_enabled == 0) {
+			filledTrigonColor(renderer, cur->x, cur->y - SOLDIER_SIZE, cur->x - SOLDIER_SIZE, cur->y, cur->x + SOLDIER_SIZE, cur->y, 0xff222222);
+		}
+
+		if (cur->Player->Potion_enabled == 1) {
+			filledTrigonColor(renderer, cur->x, cur->y - SOLDIER_SIZE, cur->x - SOLDIER_SIZE, cur->y, cur->x + SOLDIER_SIZE, cur->y, 0xffff2200);
+		}
+
 		cur = cur->nxt;
 	}
 }

@@ -18,6 +18,7 @@ void product_soldiers();
 void collision_check();
 void check_wl();
 void potion_check();
+void add_potion();
 void turn();
 
 int map_score() {
@@ -50,11 +51,13 @@ void soldiers_motion() {
 			int cx = ((int)(cur->x) - WINDOW_PADDING_LEFT) / CELL_WIDTH;
 			int cy = ((int)(cur->y) - WINDOW_PADDING_UP) / CELL_HEIGHT;
 			if (!isCandid[cx][cy]) {
-				isCandid[cx][cy] = 1;
-				TUPLE NEW;
-				NEW.x1 = cx;
-				NEW.x2 = cy;
-				Candids[Candidcnt++] = NEW;
+				if (CASTLE_PTRS[cx][cy] == NULL) {
+					isCandid[cx][cy] = 1;
+					TUPLE NEW;
+					NEW.x1 = cx;
+					NEW.x2 = cy;
+					Candids[Candidcnt++] = NEW;
+				}
 			}
 			else if (~shownpotion && xpotion == cx && ypotion == cy) {
 				enabledpotion = shownpotion;
@@ -249,6 +252,15 @@ void potion_check() {
 	}
 }
 
+void add_potion() {
+	if (~enabledpotion || ~shownpotion || !Candidcnt) return;
+	if (rand() % (int)(FPS * 30)) return;
+	shownpotion = rand() % 4;
+	int idx = rand() % Candidcnt;
+	xpotion = Candids[idx].x1;
+	ypotion = Candids[idx].x2;
+}
+
 void turn() {
 	product_soldiers();
 	soldiers_motion();
@@ -256,4 +268,5 @@ void turn() {
 	deploy_all();
 	collision_check();
 	potion_check();
+	add_potion();
 }
