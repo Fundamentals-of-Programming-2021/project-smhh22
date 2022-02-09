@@ -167,7 +167,6 @@ void random_shuffle(TUPLE* list, int n) {
 }
 
 void random_shuffle_from_end(TUPLE* list, int l, int m, int r) {
-	srand(time(NULL));
 	for (int i = m; i < r; i++) {
 		int x = rand() % (r - l) + l;
 		for (int j = i; j > x; j--) {

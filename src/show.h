@@ -77,7 +77,7 @@ void show_map(SDL_Renderer *renderer) {
 
 				rectangleColor(renderer, mx - CASTLE_SIZE / 2, my - CASTLE_SIZE / 2, mx + CASTLE_SIZE / 2, my + CASTLE_SIZE / 2, CASTLE_PTRS[i][j]->Player->Color ^ 0xffffffff);
 
-				char *Sol_cnt = (char*)(malloc(sizeof(char) * 15));
+				char Sol_cnt[15];
 				int len;
 				if (Chosen != CASTLE_PTRS[i][j])
 					len = sprintf(Sol_cnt, "%d", CASTLE_PTRS[i][j]->Soldiers_count);

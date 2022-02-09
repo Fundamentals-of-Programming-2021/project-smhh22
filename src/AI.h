@@ -17,7 +17,7 @@ float deployment_value(CASTLE *Origin, CASTLE *Dest) {
 	int mxd = Dest->x;
 	int myd = Dest->y;
 	float dist = sqrt((mxo - mxd) * (mxo - mxd) + (myo - myd) * (myo - myd));
-	float ans = dist + 2 * Dest->Soldiers_count + (Dest->Player == Players + 2) * 30 + (Dest->Player == Origin->Player) * 50 - (Dest->Player == Players) * 50;
+	float ans = dist + 2 * Dest->Soldiers_count + (Dest->Player == Players + 2) * 10 - (Dest->Player == Players) * 50;
 	return ans;
 }
 
